@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hrm.Client</name>
+    </assembly>
+    <members>
+        <member name="M:Hrm.Client.ConstantData.AllRegex.GetDisplayFormatToNumberRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>F(\\d+)</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match 'F'.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Hrm.Client.ConstantData.CardData.CardRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>\r\n(?&lt;=[A-Z])(?=[A-Z][a-z])|\r\n(?&lt;=[^A-Z])(?=[A-Z])|\r\n(?&lt;=[A-Za-z])(?=[^A-Za-z])</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnorePatternWhitespace</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 3 alternative expressions, atomically.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Zero-width positive lookbehind.<br/>
+                        ○ Match a character in the set [A-Z] right-to-left.<br/>
+                    ○ Zero-width positive lookahead.<br/>
+                        ○ Match a character in the set [A-Z].<br/>
+                        ○ Match a character in the set [a-z].<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Zero-width positive lookbehind.<br/>
+                        ○ Match a character in the set [^A-Z] right-to-left.<br/>
+                    ○ Zero-width positive lookahead.<br/>
+                        ○ Match a character in the set [A-Z].<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Zero-width positive lookbehind.<br/>
+                        ○ Match a character in the set [A-Za-z] right-to-left.<br/>
+                    ○ Zero-width positive lookahead.<br/>
+                        ○ Match a character in the set [^A-Za-z].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Hrm.Client.Extensions.GridExtensions.UpdatePageIfLastItemOnSecondPage``1(Radzen.Blazor.RadzenDataGrid{``0})">
+            <summary>
+            If there is only one item on the last page and there are two pages in total, it calls the "GoToPage" method to navigate back to the first page.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="grid"></param>
+        </member>
+        <member name="M:Hrm.Client.Extensions.HttpClientExtensions.PostToWebAppAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Post extension: TValue1 is type of post data and TValue2 is type of returned value. 
+            </summary>
+            <typeparam name="TValue1">Post value data type</typeparam>
+            <typeparam name="TValue2">Returned value type</typeparam>
+            <param name="httpClient"></param>
+            <param name="requestUri"></param>
+            <param name="value"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+            <exception cref="T:Hrm.Client.Exceptions.WebAppRequestException"></exception>
+        </member>
+        <member name="M:Hrm.Client.Extensions.NotificationExtensions.ToHrm(Radzen.NotificationSeverity)">
+            <summary>
+            Translates notification to backend api style from front-end radzen enum
+            </summary>
+            <param name="notificationSeverity">Radzen notification severity</param>
+            <returns>Translated hrm app notification severity</returns>
+        </member>
+        <member name="M:Hrm.Client.Extensions.NotificationExtensions.ToRadzen(Hrm.Shared.App.Enums.NotificationSeverity)">
+            <summary>
+            Translates notification to radzen style for front-end
+            </summary>
+            <param name="notificationSeverity">Hrm notification severity</param>
+            <returns>Translated radzen notification severity</returns>
+        </member>
+        <member name="M:Hrm.Client.Extensions.NotificationExtensions.NewNotificationObject(Radzen.NotificationSeverity,System.String,System.String,Hrm.Shared.App.Enums.NotificationType,System.String,System.Nullable{System.Guid},System.String)">
+            <summary>
+            Creates a new notifcation object
+            </summary>
+            <param name="notificationSeverity">Specifies the severity of a Notification. Severity changes the visual styling of the Notification (icon and background color)</param>
+            <param name="title">Title of the notification</param>
+            <param name="message">Message of the notification</param>
+            <param name="notificationType">Type (column) to show in the screen</param>
+            <param name="url">ClickMe link</param>
+            <param name="refId">Reference record to click</param>
+            <param name="refEntity">Reference entity to click</param>
+            <returns>Created populated Notification object</returns>
+        </member>
+        <member name="M:Hrm.Client.Extensions.NotificationExtensions.NewNotificationObject(Radzen.NotificationSeverity,System.Guid,System.String,System.String,Hrm.Shared.App.Enums.NotificationType,System.String,System.Nullable{System.Guid},System.String)">
+            <summary>
+            Creates a new notifcation object
+            </summary>
+            <param name="notificationSeverity">Specifies the severity of a Notification. Severity changes the visual styling of the Notification (icon and background color)</param>
+            <param name="userId">User to target the object</param>
+            <param name="title">Title of the notification</param>
+            <param name="message">Message of the notification</param>
+            <param name="notificationType">Type (column) to show in the screen</param>
+            <param name="url">ClickMe link</param>
+            <param name="refId">Reference record to click</param>
+            <param name="refEntity">Reference entity to click</param>
+            <returns>Created populated Notification object</returns>
+        </member>
+        <member name="M:Hrm.Client.Extensions.NotificationExtensions.NewNotificationObject(Hrm.Shared.App.Enums.NotificationSeverity,System.String,System.String,Hrm.Shared.App.Enums.NotificationType,System.String,System.Nullable{System.Guid},System.String)">
+            <summary>
+            Creates a new notifcation object
+            </summary>
+            <param name="notificationSeverity">Specifies the severity of a Notification. Severity changes the visual styling of the Notification (icon and background color)</param>
+            <param name="title">Title of the notification</param>
+            <param name="message">Message of the notification</param>
+            <param name="notificationType">Type (column) to show in the screen</param>
+            <param name="url">ClickMe link</param>
+            <param name="refId">Reference record to click</param>
+            <param name="refEntity">Reference entity to click</param>
+            <returns>Created populated Notification object</returns>
+        </member>
+        <member name="M:Hrm.Client.Extensions.NotificationExtensions.NewNotificationObject(Hrm.Shared.App.Enums.NotificationSeverity,System.Guid,System.String,System.String,Hrm.Shared.App.Enums.NotificationType,System.String,System.Nullable{System.Guid},System.String)">
+            <summary>
+            Creates a new notifcation object
+            </summary>
+            <param name="notificationSeverity">Specifies the severity of a Notification. Severity changes the visual styling of the Notification (icon and background color)</param>
+            <param name="userId">User to target the object</param>
+            <param name="title">Title of the notification</param>
+            <param name="message">Message of the notification</param>
+            <param name="notificationType">Type (column) to show in the screen</param>
+            <param name="url">ClickMe link</param>
+            <param name="refId">Reference record to click</param>
+            <param name="refEntity">Reference entity to click</param>
+            <returns>Created populated Notification object</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the GetDisplayFormatToNumberRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GetDisplayFormatToNumberRegex_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CardRegex_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CardRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.CardRegex_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CardRegex_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CardRegex_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CardRegex_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.CardRegex_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CardRegex_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CardRegex_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+    </members>
+</doc>

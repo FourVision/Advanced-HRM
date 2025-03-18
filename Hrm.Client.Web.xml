@@ -1,0 +1,835 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hrm.Client.Web</name>
+    </assembly>
+    <members>
+        <member name="M:Hrm.Client.Web.Components.FormPageBase`1.LoadInitialDataAsync">
+            <summary>
+            Call once to load the initial data/dropdown lists in the form.
+            </summary>
+            <returns>A completed task.</returns>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.FormPageBase`1.RemoveStringFromRoute">
+            <summary> 
+            Set text for replace text from the route URL while clicking on the cancel button. 
+            </summary>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.FormPageBase`1.SetTextAreaAutoHeightAsync">
+            <summary>
+            Add "autoheight" css class to text component and add oninput e.g @oninput='SetTextAreaAutoHeightAsync' to resize component automatically 
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListTableBase`1.Grid">
+            <summary>
+            Reference to the Radzen RadzenDataGrid component instance.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListTableBase`1.Count">
+            <summary>
+            The number of total records as returned by the api. Needed for pagination to work correctly.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListTableBase`1.Records">
+            <summary>
+            The list of records itself. Will only contain enough records to fill a page.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListTableBase`1.RecordToInsert">
+            <summary>
+            Holds a reference to the record that is to be created from scratch.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListTableBase`1.RecordToUpdate">
+            <summary>
+            Holds a reference to the record currently being updated.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListTableBase`1.SelectedRecord">
+            <summary>
+            Selected (multiple) records in the Grid
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListTableBase`1.GridOptionStorageKey">
+            <summary>
+            Default value is Name of T. Need to set manually if we have multiple grids on one page
+            </summary>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.LoadData(Radzen.LoadDataArgs)">
+            <summary>
+            Called by the RadzenDataGrid component when data needs to be retrieved.
+            </summary>
+            <param name="args">Contains the filter/pagination data for this request.</param>
+            <returns>A completed task.</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.InitQuery(Hrm.Client.Services.OData.ODataQuery{`0})">
+            <summary>
+            Allows for overriding of an ODataQuery instance to pass specific OData parameters for the subclassed component.
+            </summary>
+            <param name="query">An object that accepts functional declarations.</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.GetContextMenuItems(`0,Hrm.Shared.App.Enums.PageAction,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Create a context menu for crud records based on privilege
+            </summary>
+            <returns>Populated context menu</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.GetContextActions(`0)">
+            <summary>
+            Handles the context menu actions for crud records based on privilege
+            </summary>
+            <param name="item">standard args parameter</param>
+            <returns>MenuItemEventArgs result</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.InitializeRecord(`0)">
+            <summary>
+            Initializer on record to set values
+            </summary>
+            <param name="record">Record to initialize</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.Reload">
+            <summary>
+            Reloads the RadzenDataGrid component, and clears out the record parameters.
+            Note: This method will cause LoadData to be called by the RadzenDataGrid component.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListTableBase`1.AddStringToRoute">
+            <summary> 
+            Set text for adding text to route URL while clicking on the detail or create button. 
+            </summary>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.InsertRecord">
+            <summary>
+            Adds a new record to the RadzenDataGrid component.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.EditRecord(`0)">
+            <summary>
+            Starts editing a record in the RadzenDataGrid component.
+            </summary>
+            <param name="record">The record to be updated.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.DeleteRecord(`0)">
+            <summary>
+            Deletes a record from the RadzenDataGrid component, also calling the API to delete the data from the backend.
+            </summary>
+            <param name="record">The record to be deleted.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.SaveRecord(`0)">
+            <summary>
+            Save the record on the grid
+            </summary>
+            <param name="record">Record to save</param>
+            <returns>Async task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.CancelEdit(`0)">
+            <summary>
+            Cancel the edit mode and revert the memory record on the grid
+            </summary>
+            <param name="record">Record to cancel edit</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.OnCreateRecord(`0)">
+            <summary>
+            Called by the RadzenDataGrid component when a new Record is created.
+            Will call the API to save the new record in the backend.
+            </summary>
+            <param name="record">The newly created record.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.OnUpdateRecord(`0)">
+            <summary>
+            Called by the RadzenDataGrid component when a record is updated.
+            Will call the API to update the record in the backend.
+            </summary>
+            <param name="record">The record to be updated.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListViewBase`1.Grid">
+            <summary>
+            Reference to the Radzen RadzenDataGrid component instance.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListViewBase`1.Count">
+            <summary>
+            The number of total records as returned by the api. Needed for pagination to work correctly.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListViewBase`1.Records">
+            <summary>
+            The list of records itself. Will only contain enough records to fill a page.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListViewBase`1.SelectedRecord">
+            <summary>
+            Selected (multiple) records in the Grid
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Components.ListViewBase`1.GridOptionStorageKey">
+            <summary>
+            Default value is Name of T. Need to set manually if we have multiple grids on one page
+            </summary>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListViewBase`1.LoadData(Radzen.LoadDataArgs)">
+            <summary>
+            Called by the RadzenDataGrid component when data needs to be retrieved.
+            </summary>
+            <param name="args">Contains the filter/pagination data for this request.</param>
+            <returns>A completed task.</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListViewBase`1.InitQuery(Hrm.Client.Services.OData.ODataQuery{`0})">
+            <summary>
+            Allows for overriding of an ODataQuery instance to pass specific OData parameters for the subclassed component.
+            </summary>
+            <param name="query">An object that accepts functional declarations.</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListViewBase`1.GetContextMenuItems(`0,Hrm.Shared.App.Enums.PageAction,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Create a context menu for crud records based on privilege
+            </summary>
+            <returns>Populated context menu</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListViewBase`1.GetContextActions(`0)">
+            <summary>
+            Handles the context menu actions for crud records based on privilege
+            </summary>
+            <param name="args">standard args parameter</param>
+            <returns>MenuItemEventArgs result</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListViewBase`1.Reload">
+            <summary>
+            Reloads the RadzenDataGrid component, and clears out the record parameters.
+            Note: This method will cause LoadData to be called by the RadzenDataGrid component.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Hrm.Client.Web.Interop.TeamsSDK.TeamsContext">
+            <summary>
+            See documentation on: https://learn.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/access-teams-context?tabs=Json-v2%2Cteamsjs-v2%2Cdefault
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsMeetingContext.Id">
+            <summary>
+            Meeting Id used by tab when running in meeting context.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.AppLaunchId">
+            <summary>
+            ID for the current visible app which is different for across cached sessions.Used for correlating telemetry data.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.IconPositionVertical">
+            <summary>
+            Personal app icon y coordinate position.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.SessionId">
+            <summary>
+            Unique ID for the current session for use in correlating telemetry data.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.Theme">
+            <summary>
+            The current UI theme: default | dark | contrast
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.Locale">
+            <summary>
+            The current locale that the user has configured for the app formatted as languageId-countryId (for example, en-us).
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.OSLocaleInfo">
+            <summary>
+            More detailed locale info from the user's OS if available. Can be used together with the @microsoft/globe NPM
+            package to ensure your app respects the user's OS date and time format configuration.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.ParentMessageId">
+            <summary>
+            The ID of the parent message from which this task module was launched. This is only available in task modules launched from bot cards.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.UserFileOpenPreference">
+            <summary>
+            Where the user prefers the file to be opened from by default during file open
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsAppContext.UserClickTime">
+            <summary>
+            Time when the user clicked on the tab.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsChannelContext.Id">
+            <summary>
+            The Microsoft Teams ID for the channel with which the content is associated.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsChannelContext.DisplayName">
+            <summary>
+            The name for the channel with which the content is associated.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsChannelContext.RelativeUrl">
+            <summary>
+            The relative path to the SharePoint folder associated with the channel.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsChannelContext.MembershipType">
+            <summary>
+            The type of the channel with which the content is associated.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsChannelContext.DefaultOneNoteSectionId">
+            <summary>
+            The OneNote section ID that is linked to the channel.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsChatContext.Id">
+            <summary>
+            The Microsoft Teams ID for the chat with which the content is associated.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsPageContext.Id">
+            <summary>
+            The developer-defined unique ID for the entity this content points to.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsPageContext.FrameContext">
+            <summary>
+            The context where tab url is loaded (content, task, setting, remove, sidePanel).
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsPageContext.SourceOrigin">
+            <summary>
+            Source origin from where the page is opened
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsPageContext.IsFullScreen">
+            <summary>
+            Indication whether the tab is in full-screen mode.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsPageContext.IsMultiWindow">
+            <summary>
+            Indication whether the tab is in a pop out window.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsPageContext.SubPageId">
+            <summary>
+            The developer-defined unique ID for the sub-entity this content points to. This field should be used to restore to a
+            specific state within an entity, such as scrolling to or activating a specific piece of content.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsTeamContext.GroupId">
+            <summary>
+            The Office 365 group ID for the team with which the content is associated. This field is available only when the identity permission is requested in the manifest.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsTeamContext.IsArchived">
+            <summary>
+            Indicates whether team is archived. Apps should use this as a signal to prevent any changes to content associated with archived teams.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsTeamContext.InternalId">
+            <summary>
+            The Microsoft Teams ID for the team with which the content is associated.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsTeamContext.Type">
+            <summary>
+            Indicates the team type, currently used to distinguish between different team types in Office 365 for Education.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsTeamContext.UserRole">
+            <summary>
+            The user's role in the team. Because a malicious party can run your content in a browser,
+            this value should be used only as a hint as to the user's role, and never as proof of her role.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserContext.IsCallingAllowed">
+            <summary>
+            Represents whether calling is allowed for the current logged in User.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserContext.IsPSTNCallingAllowed">
+            <summary>
+            Represents whether PSTN calling is allowed for the current logged in User.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserContext.LoginHint">
+            <summary>
+            A value suitable for use as a login_hint when authenticating with Azure AD. Because a malicious party can run your
+            content in a browser, this value should be used only as a hint as to who the user is and never as proof of identity.
+            This field is available only when the identity permission is requested in the manifest.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserContext.LicenseType">
+            <summary>
+            The license type for the current user.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserContext.Id">
+            <summary>
+            The Azure AD object id of the current user. Because a malicious party run your content in a browser,
+            this value should be used only as a hint as to who the user is and never as proof of identity. This field
+            is available only when the identity permission is requested in the manifest.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserContext.UserPrincipalName">
+            <summary>
+            The UPN of the current user. This may be an externally-authenticated UPN (e.g., guest users). Because a
+            malicious party run your content in a browser, this value should be used only as a hint as to who the
+            user is and never as proof of identity. This field is available only when the identity permission is
+            requested in the manifest.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserContext.DisplayName">
+            <summary>
+            The address book name of the current user.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsSharepointSiteContext.MySiteDomain">
+            <summary>
+            The SharePoint my site domain associated with the user.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsSharepointSiteContext.MySitePath">
+            <summary>
+            The SharePoint relative path to the current users mysite
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsSharepointSiteContext.TeamSiteDomain">
+            <summary>
+            The domain of the root SharePoint site associated with the team.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsSharepointSiteContext.TeamSiteId">
+            <summary>
+            Teamsite ID, aka sharepoint site id.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsSharepointSiteContext.TeamSitePath">
+            <summary>
+            The relative path to the SharePoint site associated with the team.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsSharepointSiteContext.TeamSiteUrl">
+            <summary>
+            The root SharePoint site associated with the team.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsHostContext.ClientType">
+            <summary>
+            The type of the host client. Possible values are : android, ios, web, desktop, rigel.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsHostContext.Name">
+            <summary>
+            Identifies which host is running your app
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsHostContext.RingId">
+            <summary>
+            Current ring ID.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsHostContext.SessionId">
+            <summary>
+            Unique ID for the current Teams session for use in correlating telemetry data.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserTenantContext.TeamsSKU">
+            <summary>
+            The type of license for the current users tenant.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Interop.TeamsSDK.TeamsUserTenantContext.Id">
+            <summary>
+            The Azure AD tenant ID of the current user. Because a malicious party can run your content in a browser,
+            this value should be used only as a hint as to who the user is and never as proof of identity. This field
+            is available only when the identity permission is requested in the manifest.
+            </summary>
+        </member>
+        <member name="F:Hrm.Client.Web.Interop.TeamsSDK.UserFileOpenPreferenceType.Desktop">
+            <summary>
+            Indicates that the user should be prompted to open the file in the native desktop application associated with the file type.
+            </summary>
+        </member>
+        <member name="F:Hrm.Client.Web.Interop.TeamsSDK.UserFileOpenPreferenceType.Inline">
+            <summary>
+            Indicates that the user should be prompted to open the file in inline.
+            </summary>
+        </member>
+        <member name="F:Hrm.Client.Web.Interop.TeamsSDK.UserFileOpenPreferenceType.Web">
+            <summary>
+            Indicates that the user should be prompted to open the file in a web browser.
+            </summary>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.App.General.Parameters.ParameterListPage.InitQuery(Hrm.Client.Services.OData.ODataQuery{Hrm.Shared.App.Tables.Parameter})">
+            <summary>
+            We need to read the Name from the Parent object, so call expand on the Employment query and return the Parent.
+            </summary>
+            <param name="query"></param>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.App.LabelGroups.LabelGroupsListPage.InitQuery(Hrm.Client.Services.OData.ODataQuery{Hrm.Shared.App.Tables.LabelGroup})">
+            <summary>
+            We need to read the Name from the Parent object, so call expand on the LabelGroup query and return the Parent.
+            </summary>
+            <param name="query"></param>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.Organization.BaseData.IdentificationTypes.IdentificationTypeFormBase.IdNumberLengthRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>[#*]</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [#*].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.Organization.BaseData.IdentificationTypes.IdentificationTypeFormBase.IdNumberPatternRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>^[!@_\\-#$%^&amp;*(),.?:{}|&lt;&gt;]+$</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a character in the set [!#-&amp;(-*,-.:&lt;&gt;-@^_{-}] atomically at least once.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.Organization.Compensation.FixedCompensationActions.FixedCompensationActionListPage.InitQuery(Hrm.Client.Services.OData.ODataQuery{Hrm.Shared.Organization.Tables.FixedCompensationAction})">
+            <summary>
+            We need to read the Name from the Parent object, so call expand on the FixedCompensationAction query and return the Parent.
+            </summary>
+            <param name="query"></param>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.Organization.Positions.PositionFormBase.PostSubmitAsync(Hrm.Shared.Organization.Tables.Position)">
+            <summary>
+            Submit Position worker assignment after submit Position
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.Organization.Positions.PositionFormBase.SubmitPositionDetailAsync(Hrm.Shared.Organization.Tables.Position)">
+            <summary>
+            Submit PositionDetails
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.Organization.Positions.PositionFormBase.SubmitWorkerAssignmentFormAsync(Hrm.Shared.Organization.Tables.Position)">
+            <summary>
+            Submit WorkerAssignment Form
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.Organization.Positions.PositionFormBase.SubmitHierarchyFormAsync(Hrm.Shared.Organization.Tables.Position)">
+            <summary>
+            Submit PositionHierarchy Form
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.DashboardClientService.Initialize(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Initializes the hub connections
+            </summary>
+            <param name="hubConnection">Connection hub to catch messages on</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.DashboardClientService.GetDashboardAsync(System.Guid)">
+            <summary>
+            Pull the Dashboard data
+            </summary>
+            <returns>Running task</returns>
+        </member>
+        <member name="T:Hrm.Client.Web.Services.HeadingClientService.OnUpdateHandlerAsync">
+            <summary>
+            Subscriber for listeners on receiving updates
+            </summary>
+            <param name="headingTypeName">Updated heading model to process</param>
+            <param name="id">Record ID to process</param>
+            <param name="headingModel">Serialized object</param>
+            <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.HeadingClientService.Initialize(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Initializes the hub connections
+            </summary>
+            <param name="hubConnection">Connection hub to catch messages on</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.HeadingClientService.GetHeadingAsync(System.String,System.Guid)">
+            <summary>
+            Pull the Heading data
+            </summary>
+            <param name="headingName">Heading type name</param>
+            <param name="id">Guid for the Id</param>
+            <returns>Running task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.Initialize(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Initializes the hub connections
+            </summary>
+            <param name="hubConnection">Connection hub to catch messages on</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.UpdateDialogAsync(System.String)">
+            <summary>
+            Displays a dialog to notify the user about a new version update.
+            </summary>
+            <param name="version">The version number of the update.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.MessageDialogAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            Shows a message dialog
+            </summary>
+            <param name="title">The title of the dialog</param>
+            <param name="message">The message to display in the dialog</param>
+            <returns>A task representing the asynchronous operation</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.BrowserExceptionAsync(System.Exception)">
+            <summary>
+            Sends a browser exception event to the server.
+            </summary>
+            <param name="exception">The exception that occurred in the browser.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.LoadNotificationsAsync">
+            <summary>
+            Trigger a full (re)load of notifications, clears the messages first. Expected to call on startup of the app
+            </summary>
+            <returns>Running task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.PageViewAsync(Hrm.Shared.App.Models.PageViewModel)">
+            <summary>
+            Sends a page view event to the server.
+            </summary>
+            <param name="pageViewModel">The model containing page view information.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.ClearAllAsync">
+            <summary>
+            Trugger a clear of all notifications on the server and client
+            </summary>
+            <returns>Running task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.MarkReadAsync(Hrm.Shared.App.Tables.Notification)">
+            <summary>
+            Marks a notification to be read on the server and client
+            </summary>
+            <param name="notification">Notification to mark as read</param>
+            <returns>Running task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.DeleteAsync(Hrm.Shared.App.Tables.Notification)">
+            <summary>
+            Deletes a notification from the server and client
+            </summary>
+            <param name="notification">Notification to delete</param>
+            <returns>Running task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.ShowNotificationAsync(Hrm.Shared.App.Tables.Notification,System.Boolean,System.Boolean)">
+            <summary>
+            Handles the notification
+            </summary>
+            <param name="notification">Notification to process</param>
+            <param name="showPopup">Give a short dialog on the middle of the screen about the new notification</param>
+            <param name="storeOnServer">Persist the notification on the server</param>
+            <returns>Running task for processing the notification</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.InfoNotificationAsync(System.String,System.String,System.String,System.String,System.Nullable{System.Guid},Hrm.Shared.App.Enums.NotificationType,System.Boolean)">
+            <summary>
+            Shows an informational notification
+            </summary>
+            <param name="message">Message to show</param>
+            <param name="title">Title of th enotification</param>
+            <param name="storeOnServer">Creates a server record that will remain after restart of the client (False by default)</param>
+            <param name="notificationType">Category of the notification (Personal by default)</param>
+            <param name="url">Deeplink URL for ClickMe support</param>
+            <param name="refId">Reference record</param>
+            <param name="refEntity">Reference Entity</param>
+            <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.SuccessNotificationAsync(System.String,System.String,System.String,System.String,System.Nullable{System.Guid},Hrm.Shared.App.Enums.NotificationType,System.Boolean)">
+            <summary>
+            Shows an success notification
+            </summary>
+            <param name="message">Message to show</param>
+            <param name="title">Title of th enotification</param>
+            <param name="storeOnServer">Creates a server record that will remain after restart of the client (False by default)</param>
+            <param name="notificationType">Category of the notification (Personal by default)</param>
+            <param name="url">Deeplink URL for ClickMe support</param>
+            <param name="refId">Reference record</param>
+            <param name="refEntity">Reference Entity</param>
+            <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.WarningNotificationAsync(System.String,System.String,System.String,System.String,System.Nullable{System.Guid},Hrm.Shared.App.Enums.NotificationType,System.Boolean)">
+            <summary>
+            Shows an warning notification
+            </summary>
+            <param name="message">Message to show</param>
+            <param name="title">Title of th enotification</param>
+            <param name="storeOnServer">Creates a server record that will remain after restart of the client (False by default)</param>
+            <param name="notificationType">Category of the notification (Personal by default)</param>
+            <param name="url">Deeplink URL for ClickMe support</param>
+            <param name="refId">Reference record</param>
+            <param name="refEntity">Reference Entity</param>
+            <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.ErrorNotificationAsync(System.String,System.String,System.String,System.String,System.Nullable{System.Guid},Hrm.Shared.App.Enums.NotificationType,System.Boolean)">
+            <summary>
+            Shows an error notification
+            </summary>
+            <param name="message">Message to show</param>
+            <param name="title">Title of th enotification</param>
+            <param name="storeOnServer">Creates a server record that will remain after restart of the client (False by default)</param>
+            <param name="notificationType">Category of the notification (Personal by default)</param>
+            <param name="url">Deeplink URL for ClickMe support</param>
+            <param name="refId">Reference record</param>
+            <param name="refEntity">Reference Entity</param>
+            <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.ExceptionMessageAsync(System.Exception,System.String,System.String,System.String,System.Nullable{System.Guid},Hrm.Shared.App.Enums.NotificationType,System.Boolean)">
+            <summary>
+            Shows an exception notification
+            </summary>
+            <param name="exception">Exception to show</param>
+            <param name="title">Title of th enotification</param>
+            <param name="storeOnServer">Creates a server record that will remain after restart of the client (False by default)</param>
+            <param name="notificationType">Category of the notification (Personal by default)</param>
+            <param name="url">Deeplink URL for ClickMe support</param>
+            <param name="refId">Reference record</param>
+            <param name="refEntity">Reference Entity</param>
+            <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.SignalRClientService.InitializeAsync(System.String)">
+            <summary>
+            Initializes the hub connections
+            </summary>
+            <param name="baseUrl">Server url to connect</param>
+            <returns>Running task</returns>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.Components.SaveEditButton`1.BtnShow">
+            <summary>
+            [Add, AddAndContinue, Save, SaveAndClose, Edit, Cancel]
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.CustomLoader.CssClass">
+            <summary> Custom css classes </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.CustomLoader.FullScreenBackdrop">
+            <summary> Set value true if needed on full screen. Default value is false </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.CustomLoader.FullBodyBackdrop">
+            <summary> Set value true and parent element position relative if not needed on full body. Default value is true </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.CustomLoader.LoaderText">
+            <summary> Set custom text. Default value is "Loading". Set null or empty if not needed </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.CustomLoader.LoaderSize">
+            <summary> Set loader size. Default value is 100px </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.CustomLoader.Delay">
+            <summary> Set loader start delay in miliseconds. Default value: 500 </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.CustomLoader.ShowLoader">
+            <summary> Enable or Disable loader </summary>
+        </member>
+        <member name="T:Hrm.Client.Web.Shared.PrivilegeCheck">
+            <summary>
+            Authorized section of a page, given that the user is authorized; additional has a PrivilegeType assigned to him, or has a advanced Allowed condition on a specefic client provided Privilege.
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.PrivilegeCheck.ChildContent">
+            <summary>
+            Content to show or hide
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.PrivilegeCheck.ShowError">
+            <summary>
+            Show a error message when not authorized
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.PrivilegeCheck.PrivilegeType">
+            <summary>
+            PrivilegeType that MUST be assigned and enabled one menu item to the logged on user
+            </summary>
+        </member>
+        <member name="P:Hrm.Client.Web.Shared.PrivilegeCheck.Allowed">
+            <summary>
+            Free formated expresion using the Client Services privileges
+            </summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.IdNumberLengthRegex_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the IdNumberLengthRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.IdNumberLengthRegex_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberLengthRegex_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.IdNumberLengthRegex_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberLengthRegex_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.IdNumberLengthRegex_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberLengthRegex_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberLengthRegex_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the IdNumberPatternRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.IdNumberPatternRegex_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_ascii_7A7700D4010000C000000038">
+            <summary>Supports searching for characters in or not in "!#$%&amp;()*,-.:&lt;&gt;?@^_{|}".</summary>
+        </member>
+    </members>
+</doc>

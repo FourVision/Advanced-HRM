@@ -1,0 +1,34 @@
+/* /Pages/App/UserSettings.razor.rz.scp.css */
+/* partial CSS */
+
+.colors[b-qr755y1s8t],
+.color-classes[b-qr755y1s8t] {
+    overflow: hidden;
+}
+
+    .colors div[b-qr755y1s8t] {
+        padding: 16px;
+    }
+
+    .color-classes div[b-qr755y1s8t] {
+        padding: 8px 16px;
+    }
+
+.series-colors[b-qr755y1s8t] {
+    display: flex;
+}
+
+    .series-colors div[b-qr755y1s8t] {
+        flex: 1;
+    }
+
+.border-color-classes div[b-qr755y1s8t] {
+    padding: 3px 15px;
+    margin: 8px;
+    border: 1px solid transparent;
+    border-radius: var(--rz-border-radius-2)
+}
+/* /Pages/Index.razor.rz.scp.css */
+/* partial CSS */
+/* /Shared/MainLayout.razor.rz.scp.css */
+/* Main CSS */

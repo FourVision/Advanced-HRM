@@ -1,0 +1,1018 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hrm.Shared</name>
+    </assembly>
+    <members>
+        <member name="T:Hrm.Shared.App.Constants.DefaultRoleName">
+            <summary>
+            Description of default roles
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.SystemUser">
+            <summary>
+            Standard role assigned to all system users; the role contains basic user functions like change the user language or switching to dark team.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.Employee">
+            <summary>
+            Default employee privileges for the license modules; depending on the module you can either initiate a request or see your own personal information.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.Manager">
+            <summary>
+            Oversees employees reporting to his position, monitoring progress, and generating business reports.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.HumanResources">
+            <summary>
+            Involved in overseeing the broader aspects of employees, such as compliance with labor laws, integration with payroll systems, and analysis of overall workforce time expenditure.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.Recruiter">
+            <summary>
+            Identifying potential hires to interviewing and evaluating candidates, updating job ads and conducting background checks.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.Finance">
+            <summary>
+            Utilizes timesheet data for payroll processing, budgeting, and financial planning. May also be responsible for assigning tasks, customers or projects, monitoring progress, and generating reports and run payroll.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.Auditor">
+            <summary>
+            Responsible for ensuring accuracy and compliance. Auditors for example might review timesheets for irregularities or inconsistencies.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.Browse">
+            <summary>
+            This role is designed for service desk or reception workers typically allows them to look up basic employee information. This role might include permissions to access details such as employee names, job titles, contact information, and office locations. This access helps receptionists and service desk staff efficiently direct visitors, answer queries, and perform their duties effectively.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.Payroll">
+            <summary>
+            Responsible for running periodic payrolls, typically allows them to access essential employee information needed for payroll processing. 
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.ProjectManager">
+            <summary>
+            Responsable for oversees the accurate and timely submission of employee timesheets, ensuring compliance with company policies and labor laws.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.TrainingManager">
+            <summary>
+            A Training and Development Manager is responsible for creating and implementing training programs to enhance employee skills and performance. They develop training materials, conduct sessions, oversee development programs, and update training initiatives to meet organizational needs. Essential skills include instructional design, curriculum development, and industry experience. They also manage training budgets and stay updated with the latest training trends.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.ApplicationSupport">
+            <summary>
+            Provides technical support for the application. This includes troubleshooting, updating software, and assisting users with technical issues.
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Constants.DefaultRoleName.ApplicationAdmin">
+            <summary>
+            Provides full access to the application setup tables like labels, themes, dashboards and security setup
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.App.Exceptions.ItemAlreadyExistsException">
+            <summary>
+            this is for handle the exception. If item is already exist with same name or key
+            </summary>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.CustomRegexes.ReplaceWhiteSpace">
+            <remarks>
+            Pattern:<br/>
+            <code>\\s+</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a whitespace character atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.CustomRegexes.RegexForIdentificationNumber">
+            <remarks>
+            Pattern:<br/>
+            <code>[^a-zA-Z0-9]</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [^0-9A-Za-z].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Hrm.Shared.App.Extensions.PrivilegeExtensions.PrivilegeMap">
+            <summary>
+            Privilege mapping for internal usage
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Extensions.PrivilegeExtensions.LicenseMap">
+            <summary>
+            License mapping for internal usage
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Extensions.PrivilegeExtensions.CachedPrivilegeMap">
+            <summary>
+            Local cached Privilege map
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Extensions.PrivilegeExtensions.CachedLicenseMap">
+            <summary>
+            Local cached License map
+            </summary>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.GetPrivilegeMap">
+            <summary>
+            Build or return cached Privilege map
+            </summary>
+            <returns>Privilege map</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.GetLicenseModule(Hrm.Shared.App.Privileges.PrivilegeBase)">
+            <summary>
+            Get license module of a privilege
+            </summary>
+            <param name="privilege">Privilege to return the license code</param>
+            <returns>License module code</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.GetLicenseMap">
+            <summary>
+            Build or return cached License map
+            </summary>
+            <returns>License map</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.GetPrivilegeType(Hrm.Shared.App.Enums.PrivilegeType)">
+            <summary>
+            Get privilege type object based on given type
+            </summary>
+            <param name="privilegeType">PrivilegeType enum</param>
+            <returns>Type object</returns>
+            <exception cref="T:System.NotImplementedException">unknown type object</exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.GetPrivilegeType(System.Type)">
+            <summary>
+            Get privilege type based on given object
+            </summary>
+            <param name="privilegeObjectType">Object type to determine the privilege type enum</param>
+            <returns>PrivilegeType enum</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.NewPrivilegeObject(Hrm.Shared.App.Enums.PrivilegeType)">
+            <summary>
+            Get a new privilege object based on the type
+            </summary>
+            <param name="privilegeType">Type to create</param>
+            <returns>Typed object</returns>
+            <exception cref="T:System.NotImplementedException">Unknown privilege type in the objects</exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.SetAccessLevel(Hrm.Shared.App.Tables.PrivilegeSetting)">
+            <summary>
+            Set the access level of a privilege setting.
+            </summary>
+            <param name="privilegeSetting">The privilege setting to set the access level to.</param>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.GetAccessLevel(Hrm.Shared.App.Tables.PrivilegeSetting)">
+            <summary>
+            Get the access level of a privilege setting.
+            </summary>
+            <param name="privilegeSetting">The privilege setting to get the access level from.</param>
+            <returns>The access level of the privilege setting.</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.GetAccessLevelFromObject(System.Object)">
+            <summary>
+            Get the access level of a privilege object.
+            </summary>
+            <param name="privilegeObject">The privilege object to get the access level from.</param>
+            <returns>The access level of the privilege setting.</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.Combine(Hrm.Shared.App.Tables.PrivilegeSetting,Hrm.Shared.App.Tables.PrivilegeSetting)">
+            <summary>
+            Combine two privileges of the same type and sum the security
+            </summary>
+            <param name="first">First privilege to combine</param>
+            <param name="second">Second privilege to combine</param>
+            <returns>Summed privilege</returns>
+            <exception cref="T:System.InvalidOperationException">When trying to combine incompatible privileges this error will be raised</exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.Combine(System.Collections.Generic.Dictionary{System.String,Hrm.Shared.App.Enums.PrivilegeCrud},System.Collections.Generic.Dictionary{System.String,Hrm.Shared.App.Enums.PrivilegeCrud})">
+            <summary>
+            Combine two crud dictionary to sum the security result
+            </summary>
+            <param name="firstDict">First dictionary to combine</param>
+            <param name="secondDict">Second dictionary to combine</param>
+            <returns>Summed dictionary with CRUD rules</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.Combine(System.Collections.Generic.Dictionary{System.String,Hrm.Shared.App.Enums.PrivilegeValue},System.Collections.Generic.Dictionary{System.String,Hrm.Shared.App.Enums.PrivilegeValue})">
+            <summary>
+            Combine two Value dictionary to sum the security result
+            </summary>
+            <param name="firstDict">First dictionary to combine</param>
+            <param name="secondDict">Second dictionary to combine</param>
+            <returns>Summed dictionary with Value rules</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.IsDeny(Hrm.Shared.App.Enums.PrivilegeValue)">
+            <summary>
+            Returns a boolean on the PrivilegeValue
+            </summary>
+            <param name="privilegeValue">Value to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.IsAllow(Hrm.Shared.App.Enums.PrivilegeValue)">
+            <summary>
+            Returns a boolean on the PrivilegeValue
+            </summary>
+            <param name="privilegeValue">Value to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.HasAccess(Hrm.Shared.App.Enums.PrivilegeValue,System.Boolean)">
+            <summary>
+            Validates access and throws exception when value is Deny or Not-Set
+            </summary>
+            <param name="privilegeValue">Value to validate</param>
+            <param name="validate">Provide this validate (true) to execute the check, you can use this to do a compare between two fields (updated value) to check the change rights of that field</param>
+            <exception cref="T:Hrm.Shared.App.Exceptions.PrivilegeException">Exception that is raised when access is denied</exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.IsDeny(Hrm.Shared.App.Enums.PrivilegeCrud)">
+            <summary>
+            Returns a boolean on the PrivilegeValue
+            </summary>
+            <param name="privilegeCrud">Value to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.IsRead(Hrm.Shared.App.Enums.PrivilegeCrud)">
+            <summary>
+            Returns a boolean on the PrivilegeValue
+            </summary>
+            <param name="privilegeCrud">Value to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.IsCreate(Hrm.Shared.App.Enums.PrivilegeCrud)">
+            <summary>
+            Returns a boolean on the PrivilegeValue
+            </summary>
+            <param name="privilegeCrud">Value to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.IsUpdate(Hrm.Shared.App.Enums.PrivilegeCrud)">
+            <summary>
+            Returns a boolean on the PrivilegeValue
+            </summary>
+            <param name="privilegeCrud">Value to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.IsDelete(Hrm.Shared.App.Enums.PrivilegeCrud)">
+            <summary>
+            Returns a boolean on the PrivilegeValue
+            </summary>
+            <param name="privilegeCrud">Value to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Extensions.PrivilegeExtensions.HasAccess(Hrm.Shared.App.Enums.PrivilegeCrud)">
+            <summary>
+            Validates access and throws exception when value is Deny or Not-Set
+            </summary>
+            <param name="privilegeCrud">Value to validate</param>
+            <exception cref="T:Hrm.Shared.App.Exceptions.PrivilegeException">Exception that is raised when access is denied</exception>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.Badge">
+            <summary>
+            Badge alert (like 5 results found for depth search)...
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.Name">
+            <summary>
+            Key item name
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.Icon">
+            <summary>
+            Icon to use, see https://fonts.google.com/icons?selected=Material+Icons
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.Path">
+            <summary>
+            Navigation path
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.Title">
+            <summary>
+            Menue item name, dont populate to source a default label; should be used to overwrite the default only
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.WikiPage">
+            <summary>
+            Link to the help page
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.Expanded">
+            <summary>
+            Make it expanded or not...
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.CounterEnabled">
+            <summary>
+            Make it enabled for counter tiles...
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.MenuAreas">
+            <summary>
+            Add Menu Areas / Modules
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.ShowUnauthorized">
+            <summary>
+            Show to unauthorized users
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.IncludeInDepthSearch">
+            <summary>
+            Activate depth search on this menu item (lookup related workers on a worker menu item
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.Children">
+            <summary>
+            Child nodes
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.Tags">
+            <summary>
+            Used to add search key words
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.MenuItem.TableType">
+            <summary>
+            Type of menu table class
+            </summary>
+        </member>
+        <member name="F:Hrm.Shared.App.Models.TranslationsModel.Translations">
+            <summary>
+            List of available translation languages
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.App.Models.WikiPage">
+            <summary>
+            Represents a Wiki page with various properties including subpages and content.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiPage.Path">
+            <summary>
+            Path of the wiki page.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiPage.GitItemPath">
+            <summary>
+            Item path of the wiki page refering the markup file.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiPage.IsParentPage">
+            <summary>
+            True if this page has subpages under its path.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiPage.SubPages">
+            <summary>
+            List of subpages of the current page.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiPage.Content">
+            <summary>
+            Content of the wiki page.
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.App.Models.WikiSearchRequest">
+            <summary>
+            Represents a Wiki page with various properties including subpages and content. 
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiSearchRequest.SearchText">
+            <summary>
+            The search text.
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.App.Models.WikiSearchResponse">
+            <summary>
+            Represents the response of a search query.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiSearchResponse.Count">
+            <summary>
+            The total count of search results.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiSearchResponse.Results">
+            <summary>
+            The list of search results.
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.App.Models.WikiSearchResponse.Result">
+            <summary>
+            Represents a single search result.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiSearchResponse.Result.Path">
+            <summary>
+            Path at which result file is present.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiSearchResponse.Result.Hits">
+            <summary>
+            Highlighted snippets of fields that match the search request. The list is sorted by relevance of the snippets.
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.App.Models.WikiSearchResponse.Hit">
+            <summary>
+            Represents a hit in the search result.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiSearchResponse.Hit.FieldReferenceName">
+            <summary>
+            The field reference name of the hit.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.WikiSearchResponse.Hit.Highlights">
+            <summary>
+            The list of highlights in the hit.
+            </summary>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.RGB.RgbRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>rgb\\((?&lt;r&gt;\\d{1,3}),\\s*(?&lt;g&gt;\\d{1,3}),\\s*(?&lt;b&gt;\\d{1,3})\\)</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "rgb(".<br/>
+            ○ "r" capture group.<br/>
+                ○ Match a Unicode digit atomically at least 1 and at most 3 times.<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ "g" capture group.<br/>
+                ○ Match a Unicode digit atomically at least 1 and at most 3 times.<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ "b" capture group.<br/>
+                ○ Match a Unicode digit atomically at least 1 and at most 3 times.<br/>
+            ○ Match ')'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.RGB.ParseToRgbRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>(?&lt;r&gt;[0-9a-fA-F]{2})(?&lt;g&gt;[0-9a-fA-F]{2})(?&lt;b&gt;[0-9a-fA-F]{2})</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ "r" capture group.<br/>
+                ○ Match a character in the set [0-9A-Fa-f] exactly 2 times.<br/>
+            ○ "g" capture group.<br/>
+                ○ Match a character in the set [0-9A-Fa-f] exactly 2 times.<br/>
+            ○ "b" capture group.<br/>
+                ○ Match a character in the set [0-9A-Fa-f] exactly 2 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.RGB.RgbaRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>rgba\\((?&lt;r&gt;\\d{1,3}),\\s*(?&lt;g&gt;\\d{1,3}),\\s*(?&lt;b&gt;\\d{1,3}),\\s*(?&lt;a&gt;\\d?\\.?\\d+)\\)</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "rgba(".<br/>
+            ○ "r" capture group.<br/>
+                ○ Match a Unicode digit atomically at least 1 and at most 3 times.<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ "g" capture group.<br/>
+                ○ Match a Unicode digit atomically at least 1 and at most 3 times.<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ "b" capture group.<br/>
+                ○ Match a Unicode digit atomically at least 1 and at most 3 times.<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ "a" capture group.<br/>
+                ○ Match a Unicode digit greedily, optionally.<br/>
+                ○ Match '.' atomically, optionally.<br/>
+                ○ Match a Unicode digit atomically at least once.<br/>
+            ○ Match ')'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Hrm.Shared.App.Utils.IconUtils">
+            <summary>
+            Class collection with ISO utils, mainly containing static lists
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.App.Utils.IsoUtils">
+            <summary>
+            Class collection with ISO utils, mainly containing static lists
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Utils.IsoUtils.Iso3166List">
+            <summary>
+            Get complete iso list of countries based on https://en.wikipedia.org/wiki/ISO_3166-1 as of 2023-11-01
+            </summary>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.IsoUtils.Iso3166(System.String)">
+            <summary>
+            Lookup a item in the ISO3166 list
+            </summary>
+            <param name="searchString">Search Value</param>
+            <returns>An Iso3166 Country table item</returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.IsoUtils.Iso3166(System.Int32)">
+            <summary>
+            Lookup a item in the ISO3166 list
+            </summary>
+            <param name="searchInt">Search Value</param>
+            <returns>An Iso3166 Country table item</returns>
+        </member>
+        <member name="P:Hrm.Shared.Boarding.Tables.GuideTemplateActivity.IsCompleted">
+            <summary> Not Mapped field </summary>
+        </member>
+        <member name="T:Hrm.Shared.Connectors.BusinessCentral.Models.BusinessCentralCompany">
+            <summary>
+            Reference api: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/api/dynamics_company_get
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.Connectors.BusinessCentral.Models.BusinessCentralEmployee">
+            <summary>
+            Reference api: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/api/dynamics_employee_get
+            GET businesscentralPrefix/companies({id})/employees({id})
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.Connectors.BusinessCentral.Models.BusinessCentralEnvironment">
+            <summary>
+            Reference: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/administration-center-api_environments
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.Connectors.BusinessCentral.Models.BusinessCentralPicture">
+            <summary>
+            Reference api: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/api/dynamics_picture_get
+            GET https://{businesscentralPrefix}/api/v2.0/companies(companyId)/employees(itemId)/picture
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralCompany.Record">
+            <summary>
+            Represents a record of a Business Central company.
+            Reference: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/resources/dynamics_company
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralCompany.Record.ODataEtag">
+            <summary>
+            Placeholder to get the @odata.etag
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralCompany.Record.Id">
+            <summary>
+            Gets or sets the unique ID of the company. Non-editable.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralCompany.Record.SystemVersion">
+            <summary>
+            Gets or sets the internal version of the company.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralCompany.Record.TimeStamp">
+            <summary>
+            Gets or sets the timestamp of the record.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralCompany.Record.Name">
+            <summary>
+            Gets or sets the name of the company.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralCompany.Record.DisplayName">
+            <summary>
+            Gets or sets the display name of the company. This name will appear on all sales documents for the company.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralCompany.Record.BusinessProfileId">
+            <summary>
+            Gets or sets the Business Profile ID linked to the company.
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record">
+            <summary>
+            Represents a record of a Business Central employee. 
+            Reference: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/resources/dynamics_employee
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.ODataEtag">
+            <summary>
+            Placeholder to get the @odata.etag
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.Id">
+            <summary>
+            Gets or sets the unique ID of the employee. Non-editable.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.Number">
+            <summary>
+            Gets or sets the number of the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.DisplayName">
+            <summary>
+            Gets or sets the employee's name. This name will appear on all sales documents for the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.GivenName">
+            <summary>
+            Gets or sets the given name of the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.MiddleName">
+            <summary>
+            Gets or sets the middle name of the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.Surname">
+            <summary>
+            Gets or sets the surname of the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.JobTitle">
+            <summary>
+            Gets or sets the job title of the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.AddressLine1">
+            <summary>
+            Gets or sets the employee's address. This address will appear on all sales documents for the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.AddressLine2">
+            <summary>
+            Gets or sets the employee's address. This address will appear on all sales documents for the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.City">
+            <summary>
+            Gets or sets the employee's city.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.State">
+            <summary>
+            Gets or sets the employee's state.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.Country">
+            <summary>
+            Gets or sets the employee's country.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.PostalCode">
+            <summary>
+            Gets or sets the employee's postal code.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.PhoneNumber">
+            <summary>
+            Gets or sets the employee's telephone number.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.MobilePhone">
+            <summary>
+            Gets or sets the employee's mobile telephone number.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.Email">
+            <summary>
+            Gets or sets the employee's email address.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.PersonalEmail">
+            <summary>
+            Gets or sets the employee's personal email address.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.EmploymentDate">
+            <summary>
+            Gets or sets the date when the employee began to work for the company.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.TerminationDate">
+            <summary>
+            Gets or sets the date when the employee was terminated, due to retirement or dismissal, for example.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.Status">
+            <summary>
+            Gets or sets the status of the employee. It can be "Active", "Inactive" or "Terminated".
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.BirthDate">
+            <summary>
+            Gets or sets the employee's date of birth.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.StatisticsGroupCode">
+            <summary>
+            Gets or sets the employee's statistics group code.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.LastModifiedDateTime">
+            <summary>
+            Gets or sets the last datetime the employee was modified. Read-Only.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.Picture">
+            <summary>
+            Gets a virtual related record of the picture of the employee
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record">
+            <summary>
+            Represents a picture in Business Central.
+            Reference: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/resources/dynamics_picture
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record.ODataEtag">
+            <summary>
+            Placeholder to get the @odata.etag
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record.Id">
+            <summary>
+            Gets or sets the unique ID of the employee. Non-editable.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record.ParentType">
+            <summary>
+            The type of the parent document of the picture. It can be "Customer","Item", "Vendor", "Employee".
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record.Width">
+            <summary>
+            The width of the picture.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record.Height">
+            <summary>
+            The height of the picture.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record.ContentType">
+            <summary>
+            The media type of the picture.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record.PictureContentMediaEditLink">
+            <summary>
+            The media edit link of the picture content.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralPicture.Record.PictureContentMediaReadLink">
+            <summary>
+            The media read link of the picture content.
+            </summary>
+        </member>
+        <member name="T:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord">
+            <summary>
+            Represents the record of an employee in Microsoft Entra. see: https://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.Id">
+            <summary>
+            The unique identifier for the user. Inherited from directoryObject. Key. Not nullable. Read-only.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.UserPrincipalName">
+            <summary>
+            The user principal name (UPN) of the user. The UPN is an Internet-style login name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where domain must be present in the tenant’s collection of verified domains. This property is required when a user is created. Supports $filter and $orderby.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.AccountEnabled">
+            <summary>
+            true if the account is enabled; otherwise, false. This property is required when a user is created. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.DisplayName">
+            <summary>
+            The name displayed in the address book for the user. This is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created and it supports $filter and $orderby.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.GivenName">
+            <summary>
+            The given name (first name) of the user. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.JobTitle">
+            <summary>
+            The user’s job title. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.MobilePhone">
+            <summary>
+            The primary cellular telephone number for the user.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.Surname">
+            <summary>
+            The user's surname (family name or last name). Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.CompanyName">
+            <summary>
+            The company name which the user is associated. This property can be useful for describing the company that an external user comes from. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.Department">
+            <summary>
+            The name for the department in which the user works. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.EmployeeId">
+            <summary>
+            The employee identifier assigned to the user by the organization. Supports $filter and $orderby.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.EmployeeType">
+            <summary>
+            Captures enterprise worker type: Employee, Contractor, Consultant, Vendor, etc. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.UserType">
+            <summary>
+            A string value that can be used to classify user types in your directory, such as "Member" and "Guest". Supports $filter.
+            </summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ReplaceWhiteSpace method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexForIdentificationNumber_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the RegexForIdentificationNumber method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.RegexForIdentificationNumber_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexForIdentificationNumber_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexForIdentificationNumber_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexForIdentificationNumber_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexForIdentificationNumber_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexForIdentificationNumber_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexForIdentificationNumber_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RgbRegex_2">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the RgbRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.RgbRegex_2.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbRegex_2.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RgbRegex_2.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbRegex_2.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RgbRegex_2.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbRegex_2.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbRegex_2.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbRegex_2.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ParseToRgbRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ParseToRgbRegex_3.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RgbaRegex_4">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the RgbaRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.RgbaRegex_4.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbaRegex_4.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RgbaRegex_4.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbaRegex_4.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RgbaRegex_4.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbaRegex_4.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbaRegex_4.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RgbaRegex_4.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_asciiHexDigits">
+            <summary>Supports searching for characters in or not in "0123456789ABCDEFabcdef".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_asciiLettersAndDigits">
+            <summary>Supports searching for characters in or not in "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_0E2374F95728F84FCA3FD6F693D481BA4CC7802761A8A482BCBE64CA476DE4B6">
+            <summary>Supports searching for the string "rgb(".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_51CECF572885F990C73E7697216BC69E1AA29EEBA5DD34AEDC627AE466501040">
+            <summary>Supports searching for the string "rgba(".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_whitespace">
+            <summary>Supports searching for characters in or not in "\t\n\v\f\r \u0085             \u2028\u2029  　".</summary>
+        </member>
+    </members>
+</doc>
