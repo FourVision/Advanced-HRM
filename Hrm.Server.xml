@@ -195,6 +195,18 @@
         <member name="M:Hrm.Server.Data.Migrations.Hrm440.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Hrm.Server.Data.Migrations.Hrm441">
+            <inheritdoc />
+        </member>
+        <member name="M:Hrm.Server.Data.Migrations.Hrm441.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hrm.Server.Data.Migrations.Hrm441.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hrm.Server.Data.Migrations.Hrm441.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler">
             <summary>
             Handles batch scheduler messages and processes them accordingly.
@@ -428,6 +440,21 @@
         <member name="P:Hrm.Server.Services.App.CredentialsHelper.BusinessCentralIdentity">
             <summary>
             Returns the client identity for the BusinessCentral integration.
+            </summary>
+        </member>
+        <member name="P:Hrm.Server.Services.App.CredentialsHelper.MicrosoftEntraIdentityUsingSecrets">
+            <summary>
+            Returns the client identity for Microsoft Entra integration using secrets.
+            </summary>
+        </member>
+        <member name="P:Hrm.Server.Services.App.CredentialsHelper.MicrosoftEntraIdentityUsingCertificate">
+            <summary>
+            Returns the client identity for the Microsoft Entra integration using the certificate.
+            </summary>
+        </member>
+        <member name="P:Hrm.Server.Services.App.CredentialsHelper.MicrosoftEntraIdentity">
+            <summary>
+            Returns the client identity for the Microsoft Entra integration.
             </summary>
         </member>
         <member name="P:Hrm.Server.Services.App.CredentialsHelper.ConsentLink">
@@ -1082,7 +1109,7 @@
             Customer reference documentation: https://learn.microsoft.com/en-us/graph/auth-v2-service?tabs=http
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.App.MicrosoftEntraServices.#ctor(Hrm.Server.Data.DatabaseContext,Hrm.Server.Services.App.ConnectorServices,Hrm.Server.Services.App.Notifications.NotificationsServerService,Hrm.Server.Services.App.Messaging.Interfaces.IMessagePublisher)">
+        <member name="M:Hrm.Server.Services.App.MicrosoftEntraServices.#ctor(Hrm.Server.Data.DatabaseContext,Hrm.Server.Services.App.UserServices,Hrm.Server.Services.App.ConnectorServices,Hrm.Server.Services.App.Notifications.NotificationsServerService,Hrm.Server.Services.App.Messaging.Interfaces.IMessagePublisher)">
             <summary>
             Microsoft Graph REST API v1.0 endpoint reference : https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0
             Customer reference documentation: https://learn.microsoft.com/en-us/graph/auth-v2-service?tabs=http

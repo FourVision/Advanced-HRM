@@ -136,7 +136,7 @@ a {
         color: var(--rz-link-hover-color)
     }
 
-.rz-radiobutton:focus-visible, 
+.rz-radiobutton:focus-visible,
 .rz-chkbox:focus-visible .rz-chkbox-box {
     outline: none !important
 }
@@ -729,7 +729,7 @@ html[dir="rtl"] .rz-paginator-next, html[dir="rtl"] .rz-paginator-prev, html[dir
 
 .sticky-profile {
     top: 0;
-    z-index: 5;
+    z-index: 6;
     position: sticky;
     background: var(--rz-primary-light);
     box-shadow: 0 0 0 15px var(--rz-body-background-color), 0 0 0 16px var(--rz-body-background-color) !important;
@@ -994,47 +994,51 @@ html[dir="rtl"] .confirmAtRight {
     border-right: none !important;
 }
 
-.rz-tabview-nav li.rz-tabview-list a {
-    --rz-menu-top-item-background-color: transparent;
-    --rz-tabs-tab-padding: 0;
-    overflow: visible;
-    --rz-menu-top-item-color: var(--rz-tabs-tab-color);
-    --rz-menu-top-item-hover-color: var(--rz-tabs-tab-hover-color);
-    --rz-menu-top-item-selected-color: var(--rz-tabs-tab-hover-color);
-    --rz-menu-top-item-border-radius: var(--rz-tabs-border-radius) var(--rz-tabs-border-radius) 0 0;
-    --rz-menu-top-item-padding: 0.5rem 1rem;
+.rz-tabview-nav li.rz-tabview-list {
+    z-index: 5 !important;
 }
 
-.rz-tabview-nav li.rz-tabview-list.rz-tabview-selected a {
-    --rz-menu-top-item-color: var(--rz-tabs-tab-selected-color);
-    --rz-menu-top-item-hover-color: var(--rz-tabs-tab-selected-color);
-    --rz-menu-top-item-selected-color: var(--rz-tabs-tab-selected-color);
-}
-
-.rz-tabview-nav li.rz-tabview-list.rz-tabview-selected {
-    --rz-menu-top-item-hover-background-color: var(--rz-tabs-background-color);
-    --rz-tabs-tab-hover-background-color: transparent;
-}
-
-.rz-tabview-nav li.rz-tabview-list a ul li {
-    border: none !important;
-}
-
-    .rz-tabview-nav li.rz-tabview-list a ul li.rz-navigation-item.active-menu-item .rz-navigation-item-wrapper {
-        background-color: var(--rz-primary-light);
-        --rz-menu-item-color: var(--rz-white);
+    .rz-tabview-nav li.rz-tabview-list a {
+        --rz-menu-top-item-background-color: transparent;
+        --rz-tabs-tab-padding: 0;
+        overflow: visible;
+        --rz-menu-top-item-color: var(--rz-tabs-tab-color);
+        --rz-menu-top-item-hover-color: var(--rz-tabs-tab-hover-color);
+        --rz-menu-top-item-selected-color: var(--rz-tabs-tab-hover-color);
+        --rz-menu-top-item-border-radius: var(--rz-tabs-border-radius) var(--rz-tabs-border-radius) 0 0;
+        --rz-menu-top-item-padding: 0.5rem 1rem;
     }
 
-        .rz-tabview-nav li.rz-tabview-list a ul li.rz-navigation-item.active-menu-item .rz-navigation-item-wrapper:hover {
+    .rz-tabview-nav li.rz-tabview-list.rz-tabview-selected a {
+        --rz-menu-top-item-color: var(--rz-tabs-tab-selected-color);
+        --rz-menu-top-item-hover-color: var(--rz-tabs-tab-selected-color);
+        --rz-menu-top-item-selected-color: var(--rz-tabs-tab-selected-color);
+    }
+
+    .rz-tabview-nav li.rz-tabview-list.rz-tabview-selected {
+        --rz-menu-top-item-hover-background-color: var(--rz-tabs-background-color);
+        --rz-tabs-tab-hover-background-color: transparent;
+    }
+
+    .rz-tabview-nav li.rz-tabview-list a ul li {
+        border: none !important;
+    }
+
+        .rz-tabview-nav li.rz-tabview-list a ul li.rz-navigation-item.active-menu-item .rz-navigation-item-wrapper {
             background-color: var(--rz-primary-light);
-            --rz-menu-item-hover-color: var(--rz-white);
+            --rz-menu-item-color: var(--rz-white);
         }
 
-    .rz-tabview-nav li.rz-tabview-list a ul li ul li {
-        border: none !important;
-        background: none;
-        border-radius: 0;
-    }
+            .rz-tabview-nav li.rz-tabview-list a ul li.rz-navigation-item.active-menu-item .rz-navigation-item-wrapper:hover {
+                background-color: var(--rz-primary-light);
+                --rz-menu-item-hover-color: var(--rz-white);
+            }
+
+        .rz-tabview-nav li.rz-tabview-list a ul li ul li {
+            border: none !important;
+            background: none;
+            border-radius: 0;
+        }
 
 .rz-sidebar .rz-panel .rz-alert .rz-alert-content p, .rz-notification .rz-growl-message p, .rz-notification .rz-growl-title {
     overflow-wrap: anywhere;
@@ -1484,7 +1488,6 @@ ul.rz-tabview-nav > li {
         top: 50%;
         transform: translateY(-50%) rotate(45deg);
     }
-
     /* Tooltip Right Position */
     .html-tooltip.right::after {
         left: 101%;
