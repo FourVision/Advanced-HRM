@@ -1,11 +1,11 @@
 {
   "mainAssemblyName": "Hrm.Client.Web",
   "resources": {
-    "hash": "sha256-CtkQbVWX1Kk5Q59JsMorY7GQAGuPGYJyYFWE9+Wqxvk=",
+    "hash": "sha256-koBzE2B/XAEFEADRHm3NG1x4NsCSIkSUIjl8GVI+X6A=",
     "fingerprinting": {
-      "Hrm.Client.1qw74fa9pm.wasm": "Hrm.Client.wasm",
-      "Hrm.Client.Web.pu2f5v2llo.wasm": "Hrm.Client.Web.wasm",
-      "Hrm.Shared.kri730uu0z.wasm": "Hrm.Shared.wasm",
+      "Hrm.Client.cjwq0m5rd4.wasm": "Hrm.Client.wasm",
+      "Hrm.Client.Web.pyiorhl8g5.wasm": "Hrm.Client.Web.wasm",
+      "Hrm.Shared.gb6ib44f4t.wasm": "Hrm.Shared.wasm",
       "Markdig.82zk74d1io.wasm": "Markdig.wasm",
       "MessagePack.Annotations.pq8hehn4es.wasm": "MessagePack.Annotations.wasm",
       "MessagePack.ssvou8z8d3.wasm": "MessagePack.wasm",
@@ -276,9 +276,9 @@
       "System.Runtime.InteropServices.JavaScript.gm4fhld22q.wasm": "sha256-KDoINFDRHJ8Pu5o1C1wBZI9SIda7PKLmI92LfK/VEIk="
     },
     "assembly": {
-      "Hrm.Client.1qw74fa9pm.wasm": "sha256-aaHzgi/yiN8fa7gXN8UkAS2p8Qtf3e21R5hD88e4h3g=",
-      "Hrm.Client.Web.pu2f5v2llo.wasm": "sha256-z+Jc+JKU6LjpAKUNC2ppOUKT9IMG7npHuX+sQaixncU=",
-      "Hrm.Shared.kri730uu0z.wasm": "sha256-wJ1N5M1Ti3sxOwrx6xVeiSvuVEhRKWMl/vh+0ssYyt4=",
+      "Hrm.Client.cjwq0m5rd4.wasm": "sha256-yLCp0TaeEFuAmrLAqdBPvDqC3SPOcjzjFiC261L3n+o=",
+      "Hrm.Client.Web.pyiorhl8g5.wasm": "sha256-/1rTZmNtIevwEr088wALzAYBBktCAA2qLLDlDVDPvzI=",
+      "Hrm.Shared.gb6ib44f4t.wasm": "sha256-fGsbBVhdv8Bx61OwkeBm+Xf+VVR3/Pfb4OpumFBBILI=",
       "Markdig.82zk74d1io.wasm": "sha256-gPUwGTHTe/sd4xmteeOSYd4a/J4deDy13pbwodSYfwc=",
       "MessagePack.Annotations.pq8hehn4es.wasm": "sha256-gWgZzn2RZck/jkkXKCltjOiPV9o2nqoo+CBWbyPwKKs=",
       "MessagePack.ssvou8z8d3.wasm": "sha256-BBveyeJ3FaOjQZJBDHY3IwRPAhzqUKP4cnl4dLqeUTk=",
