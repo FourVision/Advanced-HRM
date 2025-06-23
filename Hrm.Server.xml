@@ -10,6 +10,57 @@
             </summary>
             <param name="obj">The batch scheduler object to check.</param>
         </member>
+        <member name="T:Hrm.Server.Controllers.App.WikiController">
+            <summary>
+            API controller for handling Wiki-related operations such as retrieving pages, searching, and downloading attachments.
+            </summary>
+        </member>
+        <member name="M:Hrm.Server.Controllers.App.WikiController.#ctor(Hrm.Server.Services.App.FourVisionServices,Hrm.Server.Services.App.UserServices)">
+            <summary>
+            API controller for handling Wiki-related operations such as retrieving pages, searching, and downloading attachments.
+            </summary>
+        </member>
+        <member name="M:Hrm.Server.Controllers.App.WikiController.GetAsync">
+            <summary>
+            Retrieves the root Wiki page if the user has access.
+            </summary>
+            <returns>
+            The root <see cref="T:Hrm.Shared.App.Models.WikiPage"/> if authorized; otherwise, an Unauthorized result.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.App.WikiController.PostSearch(Hrm.Shared.App.Models.WikiSearchRequest)">
+            <summary>
+            Searches the Wiki for pages matching the provided search text.
+            </summary>
+            <param name="searchRequest">The search request containing the search text.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with the search response if authorized; otherwise, an Unauthorized result.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.App.WikiController.GetAsync(System.String)">
+            <summary>
+            Retrieves the content of a Wiki page or downloads an attachment by path if the user has access.
+            </summary>
+            <param name="path">The path to the Wiki page or attachment.</param>
+            <returns>
+            The Wiki page content, a file download, or a NotFound/Unauthorized result.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.Clone(`0)">
+            <summary>
+            Creates a deep copy of the specified object by serializing and deserializing it.
+            </summary>
+            <param name="obj">The object to clone.</param>
+            <returns>A deep copy of the specified object.</returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.TryObjectValidate(System.Object,Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary@)">
+            <summary>
+            Custom object validator //
+            </summary>
+            <param name="obj"></param>
+            <param name="CustomModelState"></param>
+            <returns></returns>
+        </member>
         <member name="M:Hrm.Server.Controllers.OData.ODataController`1.PrePost(`0)">
             <summary>
             This method is called before data is added to the Database. We can modify it before adding it to the Database. If we have any issue with data we can add a message to the Model state and return the value set to false.
@@ -70,24 +121,42 @@
             <returns>Altered result set for parsing to the client</returns>
         </member>
         <member name="M:Hrm.Server.Controllers.OData.ODataController`1.AfterPost(`0)">
-            <summary> This method is triggered after insert record in the Database if autosave is true </summary>
+            <summary>
+            Executes additional logic after a new object of type <typeparamref name="T"/> has been created and
+            persisted.
+            </summary>
+            <remarks>This method is intended to be overridden in derived classes to implement custom
+            post-creation logic. The base implementation does nothing.</remarks>
+            <param name="dbObj">The newly created and persisted object of type <typeparamref name="T"/>. This parameter cannot be null.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
         </member>
         <member name="M:Hrm.Server.Controllers.OData.ODataController`1.AfterPut(`0)">
-            <summary> This method is triggered after update record in the Database </summary>
+            <summary>
+            Executes additional logic after an object of type <typeparamref name="T"/> has been updated or inserted into
+            the database.
+            </summary>
+            <remarks>This method is intended to be overridden in a derived class to implement custom
+            post-processing logic. The default implementation does nothing.</remarks>
+            <param name="dbObj">The object of type <typeparamref name="T"/> that was updated or inserted. This parameter cannot be null.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
         </member>
         <member name="M:Hrm.Server.Controllers.OData.ODataController`1.AfterPatch(`0)">
-            <summary> This method is triggered after the patch record in the Database </summary>
+            <summary>
+            Executes additional logic after a patch operation is completed.
+            </summary>
+            <remarks>This method is intended to be overridden in a derived class to implement custom
+            post-patch behavior. By default, it performs no action.</remarks>
+            <param name="dbObj">The database object that was updated during the patch operation.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
         </member>
         <member name="M:Hrm.Server.Controllers.OData.ODataController`1.AfterDelete(`0)">
-            <summary> This method is triggered after deleting a record in the Database </summary>
-        </member>
-        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.TryObjectValidate(System.Object,Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary@)">
             <summary>
-            Custom object validator //
+            Executes additional logic after an object is deleted from the database.
             </summary>
-            <param name="obj"></param>
-            <param name="CustomModelState"></param>
-            <returns></returns>
+            <remarks>Override this method in a derived class to implement custom post-deletion behavior.
+            The base implementation does nothing.</remarks>
+            <param name="dbObj">The object that was deleted. This parameter cannot be null.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
         </member>
         <member name="M:Hrm.Server.Controllers.Organization.EmploymentDetailsController.PrePost(Hrm.Shared.Organization.Tables.EmploymentDetail)">
             <summary>
@@ -195,16 +264,16 @@
         <member name="M:Hrm.Server.Data.Migrations.Hrm440.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Hrm.Server.Data.Migrations.Hrm441">
+        <member name="T:Hrm.Server.Data.Migrations.Hrm450">
             <inheritdoc />
         </member>
-        <member name="M:Hrm.Server.Data.Migrations.Hrm441.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Hrm.Server.Data.Migrations.Hrm450.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Hrm.Server.Data.Migrations.Hrm441.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Hrm.Server.Data.Migrations.Hrm450.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Hrm.Server.Data.Migrations.Hrm441.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Hrm.Server.Data.Migrations.Hrm450.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler">
@@ -212,7 +281,7 @@
             Handles batch scheduler messages and processes them accordingly.
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.#ctor(Hrm.Server.Data.DatabaseContext,Hrm.Server.Services.App.TableHelper,Hrm.Server.Services.App.Messaging.Interfaces.IMessagePublisher,Hrm.Server.Services.App.AzureServices)">
+        <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.#ctor(Hrm.Server.Data.DatabaseContext,Hrm.Server.Services.App.Messaging.Interfaces.IMessagePublisher,Hrm.Server.Services.App.AzureServices,Microsoft.Extensions.Logging.ILogger{Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler})">
             <summary>
             Handles batch scheduler messages and processes them accordingly.
             </summary>
@@ -251,6 +320,12 @@
         <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.AppVersionUpdateAsync">
             <summary>
             Updates the application version if the online version is different from the running version.
+            </summary>
+            <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.RunSendNotificationsProcessAsync">
+            <summary>
+            Send a notification message accordng to the batch scheduler settings.
             </summary>
             <returns>A task that represents the asynchronous operation.</returns>
         </member>
@@ -462,6 +537,13 @@
             Generate a consents link to present to the tenant admin for Graph API usage of ClientIdentity credentials
             </summary>
         </member>
+        <member name="M:Hrm.Server.Services.App.DashboardServerService.FlushDashboardCache(System.String)">
+            <summary>
+            Force reload of the cache by user
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
         <member name="F:Hrm.Server.Services.App.Dataverse.DataverseMapperService.EntityToTypeCache">
             <summary>
             Holds the entity string (mserp_xxxxxxx) to IDataverseTable type link.
@@ -474,6 +556,12 @@
             <param name="type">The type to load the related tables for.</param>
             <param name="context">The DatabaseContext to load the data from.</param>
             <returns></returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.Dataverse.DataverseMapperService.SortableDataverseTables">
+            <summary>
+            Get the list of dataverse tables.
+            </summary>
+            <returns>a list of table names.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.FilterGroupServices.FlushAll">
             <summary>
@@ -499,9 +587,15 @@
             Provides services for interacting with Microsoft Graph API.
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.App.GraphServices.#ctor">
+        <member name="M:Hrm.Server.Services.App.GraphServices.Dispose(System.Boolean)">
             <summary>
-            Provides services for interacting with Microsoft Graph API.
+            Releases the unmanaged resources used by the GraphServices and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Hrm.Server.Services.App.GraphServices.Dispose">
+            <summary>
+            Releases all resources used by the GraphServices.
             </summary>
         </member>
         <member name="P:Hrm.Server.Services.App.GraphServices.GraphServiceClient">
@@ -514,6 +608,12 @@
             Holds the local instance of GraphServiceClient.
             </summary>
         </member>
+        <member name="M:Hrm.Server.Services.App.GraphServices.GetGraphServiceClient">
+            <summary>
+            Gets the GraphServiceClient instance, initializing it if necessary.
+            </summary>
+            <returns>The GraphServiceClient instance.</returns>
+        </member>
         <member name="M:Hrm.Server.Services.App.GraphServices.GetProfileImageAsync(System.String)">
             <summary>
             Retrieves the profile image of a user as a Base64 encoded string.
@@ -522,11 +622,32 @@
             <returns>A task that represents the asynchronous operation. The task result contains the Base64 encoded profile image.</returns>
             <exception cref="T:System.BadImageFormatException">Thrown when the image format is invalid.</exception>
         </member>
-        <member name="M:Hrm.Server.Services.App.GraphServices.GetGraphServiceClient">
+        <member name="M:Hrm.Server.Services.App.GraphServices.GetUserDataAsync(System.String)">
             <summary>
-            Gets the GraphServiceClient instance, initializing it if necessary.
+            Retrieves user data including Id, UserPrincipalName, and DisplayName.
             </summary>
-            <returns>The GraphServiceClient instance.</returns>
+            <param name="userPrincipalName">The user principal name of the user.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains a tuple with the user's Id, UserPrincipalName, and DisplayName.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.GraphServices.GetEmployeeIdAsync(System.String)">
+            <summary>
+            Retrieves the employee ID of a user.
+            </summary>
+            <param name="oId">The object ID of the user.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the employee ID of the user.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.GraphServices.GetUserGroupsAsync(System.String)">
+            <summary>
+            Retrieves the groups of a user.
+            </summary>
+            <param name="oId">The object ID of the user.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains a list of group IDs the user is a member of.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.GraphServices.GetGroupListAsync">
+            <summary>
+            Retrieves a list of groups with their IDs and display names.
+            </summary>
+            <returns>A task that represents the asynchronous operation. The task result contains a list of key-value pairs where the key is the group ID and the value is the display name.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ActionResults.FileCallbackResult.#ctor(System.String,System.Func{System.IO.Stream,Microsoft.AspNetCore.Mvc.ActionContext,System.Threading.Tasks.Task})">
             <summary>
@@ -704,12 +825,31 @@
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Converting.DateTimeOffsetFromString(System.String,System.Boolean,System.String)">
             <summary>
-            Converts a string to a nullable DateTimeOffset.
+            Converts a string to a nullable <see cref="T:System.DateTimeOffset"/> value.
             </summary>
             <param name="str">The string to convert.</param>
             <param name="isNullable">Indicates whether the target type is nullable.</param>
-            <param name="property">The property name.</param>
-            <returns>The converted DateTimeOffset value, or <c>null</c> if the string is null or empty and the target type is nullable.</returns>
+            <param name="property">The property name for error reporting.</param>
+            <returns>
+            The converted <see cref="T:System.DateTimeOffset"/> value, or <c>null</c> if the string is null or empty and the target type is nullable.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the string cannot be parsed as a valid <see cref="T:System.DateTimeOffset"/> or OADate value.
+            </exception>
+        </member>
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Converting.DateOnlyFromString(System.String,System.Boolean,System.String)">
+            <summary>
+            Converts a string to a nullable <see cref="T:System.DateOnly"/> value.
+            </summary>
+            <param name="str">The string to convert.</param>
+            <param name="isNullable">Indicates whether the target type is nullable.</param>
+            <param name="property">The property name for error reporting.</param>
+            <returns>
+            The converted <see cref="T:System.DateOnly"/> value, or <c>null</c> if the string is null or empty and the target type is nullable.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the string cannot be parsed as a valid <see cref="T:System.DateOnly"/> or OADate value.
+            </exception>
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Converting.Int64FromString(System.String,System.Boolean,System.String)">
             <summary>
@@ -780,13 +920,23 @@
             <param name="value">The value to clean.</param>
             <returns>The cleaned value.</returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Excel.GetCellValue(DocumentFormat.OpenXml.Spreadsheet.Cell,DocumentFormat.OpenXml.Packaging.SharedStringTablePart)">
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Excel.GetCellValue(DocumentFormat.OpenXml.Spreadsheet.Cell,DocumentFormat.OpenXml.Packaging.SharedStringTablePart,DocumentFormat.OpenXml.Packaging.WorkbookPart)">
             <summary>
-            Gets the cell value from an Excel cell.
+            Gets the cell value from an Excel cell, with optional date/time conversion.
             </summary>
             <param name="cell">The cell.</param>
             <param name="sharedStringTablePart">The shared string table part.</param>
-            <returns>The cell value.</returns>
+            <param name="workbookPart">The workbook part (optional, for style lookup).</param>
+            <returns>The cell value, converted if date/time.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Excel.IsDateTimeCell(DocumentFormat.OpenXml.Spreadsheet.Cell,DocumentFormat.OpenXml.Packaging.WorkbookPart,System.String@)">
+            <summary>
+            Determines if a cell is a date/time cell and converts its value if so.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="workbookPart">The workbook part.</param>
+            <param name="formattedValue">The formatted date/time value if applicable.</param>
+            <returns>True if the cell is a date/time cell, otherwise false.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Excel.GetCellReference(System.UInt32,System.UInt32)">
             <summary>
@@ -819,6 +969,15 @@
             </summary>
             <param name="memberExpression">The member expression.</param>
             <returns>The conditional expression.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Expressions.ExportDateOnlyColumn(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            Generates an expression to export a DateOnly or DateTimeOffset column as a formatted string.
+            </summary>
+            <param name="memberExpression">The member expression representing the DateOnly or DateTimeOffset property.</param>
+            <returns>
+            An <see cref="T:System.Linq.Expressions.Expression"/> that calls the <c>ToString("yyyy-MM-dd")</c> method on the provided member expression.
+            </returns>
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Expressions.ExportJsonColumn(System.Linq.Expressions.MemberExpression)">
             <summary>
@@ -1017,7 +1176,7 @@
             </summary>
             <returns>The license object.</returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetLicenseModulesAsync">
+        <member name="M:Hrm.Server.Services.App.LicenseServices.GetPrivateLicenseModulesAsync">
             <summary>
             Gets the available license modules.
             </summary>
@@ -1302,6 +1461,14 @@
             <param name="forceReload">A boolean value indicating whether to force reload the cache.</param>
             <returns>An array of strings representing the NSCT for the specified entity name.</returns>
         </member>
+        <member name="M:Hrm.Server.Services.App.TableHelper.UpdateAllNumberSequencesNextValueAsync(Hrm.Server.Data.DatabaseContext)">
+            <summary>
+            Updates the <c>NextValue</c> property for all <see cref="T:Hrm.Shared.App.Tables.NumberSequence"/> entities in the database context.
+            For each number sequence, this method finds the highest used number in all its active configurations and sets the <c>NextValue</c> to the next available value.
+            </summary>
+            <param name="dbContext">The <see cref="T:Hrm.Server.Data.DatabaseContext"/> to use for querying and updating number sequences.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
         <member name="M:Hrm.Server.Services.App.TableHelper.GetBcEntityType(System.String)">
             <summary>
             Gets the entity type for the specified table name.
@@ -1353,6 +1520,27 @@
             <param name="from">Source language</param>
             <returns>String for translated text</returns>
         </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:Hrm.Server.Services.App.UserServices"/> class and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.Dispose">
+            <summary>
+            Releases the resources used by the <see cref="T:Hrm.Server.Services.App.UserServices"/> class.
+            </summary>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.FlushDefaultUserSettings">
+            <summary>
+            Flushes the default user settings, resetting the LocalDefaultUserSettings property to null.
+            </summary>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.FlushDefaultUserRoles">
+            <summary>
+            Flushes the default user roles.
+            </summary>
+        </member>
         <member name="M:Hrm.Server.Services.App.UserServices.FlushCache(System.String)">
             <summary>
             Flush cache object for a user, Make sure to also invoke the service bus clean with the option [FlushUserServices]
@@ -1362,6 +1550,11 @@
         <member name="M:Hrm.Server.Services.App.UserServices.FlushAll">
             <summary>
             Flush all cache objects, Make sure to also invoke the service bus clean with the option [FlushUserServices]
+            </summary>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.FlushOtpCache">
+            <summary>
+            Clears all entries from the OTP (One-Time Password) cache.
             </summary>
         </member>
         <member name="M:Hrm.Server.Services.App.UserServices.UpdateLastLogonAsync(System.Guid)">
@@ -1416,6 +1609,22 @@
             <param name="claimsPrincipal">User claim</param>
             <param name="forceReload">drop cache and reload from db</param>
             <returns>user view model</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetOrCreateUserAsync(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Get or creates a user based on given username
+            </summary>
+            <param name="claimsPrincipal">User claim to create</param>
+            <returns>User table with included security roles and privileges</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetDashboards(Hrm.Shared.App.Tables.UserRole[],Hrm.Server.Data.DatabaseContext,System.Collections.Generic.List{Hrm.Shared.App.Enums.LicenseModule})">
+            <summary>
+            Retrieves dashboard models for the specified user roles, filtering by license modules.
+            </summary>
+            <param name="UserRoles">The array of user roles to evaluate for dashboard access.</param>
+            <param name="DbContext">The database context used to query dashboard setups and card configurations.</param>
+            <param name="LicenseModules">The list of license modules to filter available cards.</param>
+            <returns>An array of <see cref="T:Hrm.Shared.App.Models.DashboardModel"/> representing the dashboards available to the user.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.UserServices.GetCustomMenuSetAsync(Hrm.Shared.App.Tables.User,Hrm.Server.Data.DatabaseContext)">
             <summary>
@@ -1488,12 +1697,28 @@
             <param name="menuItem">Menu item name to lookup</param>
             <returns>data privilege model from cache</returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.UserServices.GetOrCreateUserAsync(System.Security.Claims.ClaimsPrincipal)">
+        <member name="M:Hrm.Server.Services.App.UserServices.GetDefaultUserSettings">
             <summary>
-            Get or creates a user based on given username
+            Retrieves the default user settings.
             </summary>
-            <param name="claimsPrincipal">User claim to create</param>
-            <returns>User table with included security roles and privileges</returns>
+            <returns>The default user settings.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.TryUpdateEntraUserDetails(Hrm.Server.Data.DatabaseContext,Hrm.Shared.App.Tables.User)">
+            <summary>
+            Attempts to update the Entra user details for a given user.
+            </summary>
+            <param name="DbContext">The database context.</param>
+            <param name="user">The user object.</param>
+            <returns>A task representing the asynchronous operation. The task result contains a boolean value indicating whether updates were made.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.TryUpdateEntraRoles(Hrm.Server.Data.DatabaseContext,Hrm.Shared.App.Tables.User,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Attempts to update the Entra roles for a user.
+            </summary>
+            <param name="DbContext">The database context.</param>
+            <param name="user">The user object.</param>
+            <param name="entraRoles">The list of Entra roles.</param>
+            <returns>A task representing the asynchronous operation. The task result contains a boolean value indicating whether updates were made.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.UserServices.UpdateAzureRolesAsync(System.Security.Claims.ClaimsPrincipal)">
             <summary>
@@ -1514,6 +1739,23 @@
             </summary>
             <returns>System Administrator Role</returns>
         </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetUserEntraGroupIds(Hrm.Server.Data.DatabaseContext,System.String)">
+            <summary>
+            Retrieves the Entra group IDs for a user based on their object ID.
+            </summary>
+            <param name="dbContext">The database context.</param>
+            <param name="objectId">The object ID of the user.</param>
+            <returns>A list of Entra group IDs the user belongs to.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.UpdateUserSettingsAsync(Hrm.Shared.App.Tables.UserSettings,System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Updates the user settings asynchronously.
+            </summary>
+            <param name="userSettings">The user settings to update.</param>
+            <param name="claimsPrincipal">The claims principal representing the user.</param>
+            <returns>A task representing the asynchronous operation. The task result contains the updated user settings.</returns>
+            <exception cref="T:Hrm.Shared.App.Exceptions.PrivilegeException">Thrown when the user claim is invalid.</exception>
+        </member>
         <member name="M:Hrm.Server.Services.App.UserServices.GetUserAssignedRoleIdsAsync(System.Security.Claims.ClaimsPrincipal)">
             <summary>
             Get logged in user role Ids
@@ -1529,6 +1771,97 @@
             <param name="waitForResult">Flag indicating whether to wait for the result.</param>
             <returns>A task representing the asynchronous operation. The task result contains the user image as a Base64 encoded string.</returns>
         </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetUserWorkerIdAsync(System.String)">
+            <summary>
+            Retrieves the worker ID associated with a given object ID asynchronously.
+            </summary>
+            <param name="oId">The object ID of the user.</param>
+            <returns>A task representing the asynchronous operation. The task result contains the worker ID or null if not found.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.TryValidateUserOtp(System.Guid,System.String,Hrm.Shared.App.Models.UserOtpModel@)">
+            <summary>
+            Validates the user OTP (One-Time Password).
+            </summary>
+            <param name="otpId">The OTP ID.</param>
+            <param name="otp">The OTP value.</param>
+            <param name="userOtpModel">The user OTP model.</param>
+            <returns>True if the OTP is valid; otherwise, false.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.IsValidOtpId(System.Guid,System.String)">
+            <summary>
+            Validates if the provided OTP ID and username are valid.
+            </summary>
+            <param name="otpId">The OTP ID to validate.</param>
+            <param name="userName">The username associated with the OTP.</param>
+            <returns>True if the OTP ID and username are valid; otherwise, false.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.TryCreateUserOtp(Hrm.Server.Data.DatabaseContext,System.String,Hrm.Shared.App.Models.UserOtpModel@)">
+            <summary>
+            Tries to create a user OTP (One-Time Password) for the specified user based on the username.
+            </summary>
+            <param name="context">The database context.</param>
+            <param name="userName">The username of the user for whom the OTP is to be created.</param>
+            <param name="userOtpModel">The created UserOtpModel if the OTP is successfully created; otherwise, null.</param>
+            <returns>True if the OTP is successfully created; otherwise, false.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.TryCreateUserOtp(Hrm.Shared.App.Tables.User,Hrm.Shared.App.Models.UserOtpModel@)">
+            <summary>
+            Tries to create a user OTP (One-Time Password) for the specified user.
+            </summary>
+            <param name="user">The user for whom the OTP is to be created.</param>
+            <param name="userOtpModel">The created UserOtpModel if the OTP is successfully created; otherwise, null.</param>
+            <returns>True if the OTP is successfully created; otherwise, false.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetLogedWorkerIdAsync(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Retrieves the worker ID of the logged-in user asynchronously.
+            </summary>
+            <param name="user">The claims principal representing the logged-in user.</param>
+            <returns>A task representing the asynchronous operation. The task result contains the worker ID of the logged-in user, or null if not found.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetPrimaryPositionIdAsync(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Retrieves the primary position ID for the logged-in user asynchronously.
+            </summary>
+            <param name="user">The claims principal representing the logged-in user.</param>
+            <returns>A task representing the asynchronous operation. The task result contains the primary position ID of the logged-in user, or null if not found.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetAllReportsIdAsync(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Retrieves the IDs of all reports for the logged-in user asynchronously.
+            </summary>
+            <param name="user">The claims principal representing the logged-in user.</param>
+            <returns>A task representing the asynchronous operation. The task result contains a list of report IDs.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetDirectTeamWorkerIdsAsync(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Retrieves the IDs of direct team workers for the logged-in user asynchronously.
+            </summary>
+            <param name="user">The claims principal representing the logged-in user.</param>
+            <returns>A task representing the asynchronous operation. The task result contains a list of direct team worker IDs.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetAllTeamWorkerIdsAsync(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Retrieves the IDs of all team workers for the logged-in user asynchronously.
+            </summary>
+            <param name="user">The claims principal representing the logged-in user.</param>
+            <returns>A task representing the asynchronous operation. The task result contains a list of all team worker IDs.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.GetUserLegalEntityObjectAsync(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Retrieves the assigned Legal entity IDs of logged-in user asynchronously.
+            </summary>
+            <param name="user">The claims principal representing the logged-in user.</param>
+            <returns>A task representing the asynchronous operation. The task result contains a view model with assigned legal entity IDs.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.UserServices.CheckWorkerAccessAsync(System.Security.Claims.ClaimsPrincipal,System.Guid)">
+            <summary>
+            Checks if the logged-in user has access to a specific worker asynchronously.
+            </summary>
+            <param name="user">The claims principal representing the logged-in user.</param>
+            <param name="workerId">The ID of the worker to check access for.</param>
+            <returns>A task representing the asynchronous operation. The task result contains a boolean value indicating whether the user has access to the specified worker.</returns>
+        </member>
         <member name="M:Hrm.Server.Services.App.WorkflowTransactionServices.IsUpdateAccess``1(Hrm.Server.Services.App.WorkflowTransactionDataModel,``0,System.Guid)">
             <summary>
             Checks if the worker has update access to the record.
@@ -1539,6 +1872,23 @@
             <param name="workerId">The worker ID.</param>
             <returns>True if the worker has update access, otherwise false.</returns>
         </member>
+        <member name="T:Hrm.Server.Services.Boarding.BoardingGuideViewService">
+            <summary>
+            Singleton Service //
+            </summary>
+            <param name="userServices"></param>
+        </member>
+        <member name="M:Hrm.Server.Services.Boarding.BoardingGuideViewService.#ctor(Hrm.Server.Services.App.UserServices)">
+            <summary>
+            Singleton Service //
+            </summary>
+            <param name="userServices"></param>
+        </member>
+        <member name="M:Hrm.Server.Services.Document.DocumentViewService.FlushAll">
+            <summary>
+            Flush the cache; make sure to relay all nodes by calling the service bus notifier [DocumentViewService]
+            </summary>
+        </member>
         <member name="M:Hrm.Server.Services.OData.ConfigureODataServices.GetEdmModel(Hrm.Server.Services.OData.ODataCacheService)">
             <summary>
             This method will dynamically create the EdmModel based on the types that are marked with the ODataTable attribute.
@@ -1548,6 +1898,11 @@
         <member name="M:Hrm.Server.Services.OData.ConfigureODataServices.AddCollectionParameter(Microsoft.OData.ModelBuilder.ODataConventionModelBuilder,Microsoft.OData.ModelBuilder.OperationConfiguration,System.String,System.Type)">
             <summary>
             Adds a new non-binding collection parameter
+            </summary>
+        </member>
+        <member name="M:Hrm.Server.Services.OData.ConfigureODataServices.ValidateEdmModel(Microsoft.OData.Edm.IEdmModel,System.Collections.Generic.List{System.Type})">
+            <summary>
+            Validates the EDM model to ensure all expected endpoints exist.
             </summary>
         </member>
         <member name="M:Hrm.Server.Services.OData.IntAsEnumResolver.PromoteBinaryOperandTypes(Microsoft.OData.UriParser.BinaryOperatorKind,Microsoft.OData.UriParser.SingleValueNode@,Microsoft.OData.UriParser.SingleValueNode@,Microsoft.OData.Edm.IEdmTypeReference@)">
@@ -1585,6 +1940,18 @@
             <param name="workflowTransactionData">The workflow transaction data model.</param>
             <param name="assignee">The list of workers assigned to the task.</param>
             <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="T:Hrm.Server.Services.TimeAttendance.LeaveRequestViewService">
+            <summary>
+            Singleton Service //
+            </summary>
+            <param name="userServices"></param>
+        </member>
+        <member name="M:Hrm.Server.Services.TimeAttendance.LeaveRequestViewService.#ctor(Hrm.Server.Services.App.UserServices)">
+            <summary>
+            Singleton Service //
+            </summary>
+            <param name="userServices"></param>
         </member>
         <member name="M:Hrm.Server.Utility.ExpressionExtensions.ForEach(System.Linq.Expressions.Expression,System.Linq.Expressions.ParameterExpression,System.Linq.Expressions.Expression,System.Linq.Expressions.LabelTarget)">
             <summary>

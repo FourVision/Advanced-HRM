@@ -637,6 +637,16 @@
             <param name="storeOnServer">Persist the notification on the server</param>
             <returns>Running task for processing the notification</returns>
         </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.ShowAndSaveCustomNotificationAsync(Hrm.Shared.App.Tables.Notification,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Handles the notification
+            </summary>
+            <param name="notification">Notification to process</param>
+            <param name="rawMessage">Raw error message which will stored in database</param>
+            <param name="showPopup">Give a short dialog on the middle of the screen about the new notification</param>
+            <param name="storeOnServer">Persist the notification on the server</param>
+            <returns>Running task for processing the notification</returns>
+        </member>
         <member name="M:Hrm.Client.Web.Services.NotificationsClientService.InfoNotificationAsync(System.String,System.String,System.String,System.String,System.Nullable{System.Guid},Hrm.Shared.App.Enums.NotificationType,System.Boolean)">
             <summary>
             Shows an informational notification
@@ -701,6 +711,43 @@
             <param name="refId">Reference record</param>
             <param name="refEntity">Reference Entity</param>
             <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.CustomErrorNotificationAsync(System.String,Hrm.Client.Exceptions.WebAppRequestException,System.String,System.String,System.String,System.Nullable{System.Guid},Hrm.Shared.App.Enums.NotificationType,System.Boolean)">
+            <summary>
+            Shows an error notification
+            </summary>
+            <param name="message">Message to show</param>
+            <param name="errorResponse">Message to show</param>
+            <param name="title">Title of th enotification</param>
+            <param name="storeOnServer">Creates a server record that will remain after restart of the client (False by default)</param>
+            <param name="notificationType">Category of the notification (Personal by default)</param>
+            <param name="url">Deeplink URL for ClickMe support</param>
+            <param name="refId">Reference record</param>
+            <param name="refEntity">Reference Entity</param>
+            <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.SendErrorNotificationAsync(System.String,System.String,System.String,System.String,System.Nullable{System.Guid},Hrm.Shared.App.Enums.NotificationType,System.Boolean)">
+            <summary>
+            Shows an error notification
+            </summary>
+            <param name="message">Message to show</param>
+            <param name="title">Title of th enotification</param>
+            <param name="storeOnServer">Creates a server record that will remain after restart of the client (False by default)</param>
+            <param name="notificationType">Category of the notification (Personal by default)</param>
+            <param name="url">Deeplink URL for ClickMe support</param>
+            <param name="refId">Reference record</param>
+            <param name="refEntity">Reference Entity</param>
+            <returns>Running Task</returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Services.NotificationsClientService.ExtractJsonFromMessage(System.String)">
+            <summary>
+            Extracts JSON content from a given message string.
+            </summary>
+            <param name="message">The input message containing potential JSON content.</param>
+            <returns>
+            A string containing the extracted JSON content or a processed message if JSON is found.
+            If no JSON is found or an error occurs during processing, the original message or an empty string is returned.
+            </returns>
         </member>
         <member name="M:Hrm.Client.Web.Services.SignalRClientService.InitializeAsync(System.String)">
             <summary>

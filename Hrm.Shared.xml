@@ -270,10 +270,14 @@
             <param name="privilegeCrud">Value to validate</param>
             <exception cref="T:Hrm.Shared.App.Exceptions.PrivilegeException">Exception that is raised when access is denied</exception>
         </member>
-        <member name="P:Hrm.Shared.App.Models.MenuItem.Badge">
+        <member name="M:Hrm.Shared.App.Extensions.StepValidator.IsMultipleOfStep(System.Decimal,System.Decimal,System.Decimal)">
             <summary>
-            Badge alert (like 5 results found for depth search)...
+            Validates whether a given value is a multiple of the provided step.
             </summary>
+            <param name="value">The input value to check.</param>
+            <param name="step">The step value (must be greater than 0).</param>
+            <param name="tolerance">Optional tolerance for decimal precision errors. Default is 0.000001.</param>
+            <returns>True if the value is a valid multiple of the step, false otherwise.</returns>
         </member>
         <member name="P:Hrm.Shared.App.Models.MenuItem.Name">
             <summary>
@@ -320,19 +324,9 @@
             Show to unauthorized users
             </summary>
         </member>
-        <member name="P:Hrm.Shared.App.Models.MenuItem.IncludeInDepthSearch">
-            <summary>
-            Activate depth search on this menu item (lookup related workers on a worker menu item
-            </summary>
-        </member>
         <member name="P:Hrm.Shared.App.Models.MenuItem.Children">
             <summary>
             Child nodes
-            </summary>
-        </member>
-        <member name="P:Hrm.Shared.App.Models.MenuItem.Tags">
-            <summary>
-            Used to add search key words
             </summary>
         </member>
         <member name="P:Hrm.Shared.App.Models.MenuItem.TableType">
@@ -707,6 +701,21 @@
         <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.StatisticsGroupCode">
             <summary>
             Gets or sets the employee's statistics group code.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.BankBranchNumber">
+            <summary>
+            Gets or sets the bank branch number of the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.BankAccountNumber">
+            <summary>
+            Gets or sets the bank account number of the employee.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.Iban">
+            <summary>
+            Gets or sets the IBAN of the employee.
             </summary>
         </member>
         <member name="P:Hrm.Shared.Connectors.BusinessCentral.Tables.BusinessCentralEmployee.Record.LastModifiedDateTime">
