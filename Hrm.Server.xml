@@ -276,6 +276,18 @@
         <member name="M:Hrm.Server.Data.Migrations.Hrm450.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Hrm.Server.Data.Migrations.Hrm451">
+            <inheritdoc />
+        </member>
+        <member name="M:Hrm.Server.Data.Migrations.Hrm451.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hrm.Server.Data.Migrations.Hrm451.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hrm.Server.Data.Migrations.Hrm451.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler">
             <summary>
             Handles batch scheduler messages and processes them accordingly.
@@ -1090,57 +1102,24 @@
             </summary>
             <returns>An instance of HttpClient that is able to transact with connected FourVision License Services.</returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetEmployeeCountAsync(Hrm.Server.Data.DatabaseContext)">
+        <member name="M:Hrm.Server.Services.App.LicenseServices.LicenseCountAsync(System.Boolean)">
             <summary>
-            Gets the count of active employees from the database.
+            Calculates and returns the current license count and status information using a new database context.
             </summary>
-            <param name="context">The DatabaseContext instance.</param>
-            <returns>The count of active employees.</returns>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task`1"/> representing the asynchronous operation.
+            The task result contains a <see cref="T:Hrm.Shared.App.Models.LicenseCount"/> object with license values, user counts, remaining licenses, and status messages.
+            </returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetEmployeeCountAsync">
+        <member name="M:Hrm.Server.Services.App.LicenseServices.LicenseCountAsync(Hrm.Server.Data.DatabaseContext,System.Boolean)">
             <summary>
-            Gets the count of active employees from the database.
+            Calculates and returns the current license count and status information.
             </summary>
-            <returns>The count of active employees.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetEnterpriseUsersCountAsync(Hrm.Server.Data.DatabaseContext)">
-            <summary>
-            Gets the count of enterprise users from the database.
-            </summary>
-            <param name="context">The DatabaseContext instance.</param>
-            <returns>The count of enterprise users.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetEnterpriseUsersCountAsync">
-            <summary>
-            Gets the count of enterprise users from the database.
-            </summary>
-            <returns>The count of enterprise users.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetTeamUsersCountAsync(Hrm.Server.Data.DatabaseContext)">
-            <summary>
-            Gets the count of team users from the database.
-            </summary>
-            <param name="context">The DatabaseContext instance.</param>
-            <returns>The count of team users.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetTeamUsersCountAsync">
-            <summary>
-            Gets the count of team users from the database.
-            </summary>
-            <returns>The count of team users.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetStaffUsersCountAsync(Hrm.Server.Data.DatabaseContext)">
-            <summary>
-            Gets the count of staff users from the database.
-            </summary>
-            <param name="context">The DatabaseContext instance.</param>
-            <returns>The count of staff users.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.LicenseServices.GetStaffUsersCountAsync">
-            <summary>
-            Gets the count of staff users from the database.
-            </summary>
-            <returns>The count of staff users.</returns>
+            <param name="context">The <see cref="T:Hrm.Server.Data.DatabaseContext"/> instance used to query employee and user counts.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task`1"/> representing the asynchronous operation. 
+            The task result contains a <see cref="T:Hrm.Shared.App.Models.LicenseCount"/> object with license values, user counts, remaining licenses, and status messages.
+            </returns>
         </member>
         <member name="M:Hrm.Server.Services.App.LicenseServices.UpdateAccessLevelAsync(Hrm.Server.Data.DatabaseContext)">
             <summary>
@@ -1406,6 +1385,24 @@
             <param name="improvement">The improvement text or context for the job advertisement.</param>
             <param name="jobAdText">The initial text or context for the job advertisement.</param>
             <returns>A task that represents the asynchronous operation. The task result contains the improved job advertisement text.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.OpenAIServices.GuideWelcomeTextAsync(Hrm.Shared.App.Models.ConnectorModel.OpenAISetting,System.String,System.String)">
+            <summary>
+            Generates a guide template welcome text using OpenAI services.
+            </summary>
+            <param name="openAISettings">The settings required to connect to OpenAI services.</param>
+            <param name="language">The language in which the welcome text should be generated.</param>
+            <param name="welcomeText">The initial text or context for the welcome text.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the generated welcome text.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.OpenAIServices.GuideWelcomeTextImproveAsync(Hrm.Shared.App.Models.ConnectorModel.OpenAISetting,System.String,System.String,System.String)">
+            <summary>
+            Improves a guide template welcome text using OpenAI services.
+            </summary>
+            <param name="openAISettings">The settings required to connect to OpenAI services.</param>
+            <param name="improvement">The improvement text or context for the welcome text.</param>
+            <param name="welcomeText">The initial text or context for the welcome text.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the improved welcome text.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.OpenAIServices.GenerateAiTextAsync(Hrm.Shared.App.Models.ConnectorModel.OpenAISetting,System.String,System.String,OpenAI.Chat.ChatClient)">
             <summary>
@@ -1929,7 +1926,7 @@
             Flush the cache; make sure to relay all nodes by calling the service bus notifier [CustomFormService]
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.Request.RequestFormServices.SendRequestEmail(Hrm.Shared.Request.Tables.RequestForm,System.Nullable{System.Guid},Hrm.Shared.App.Tables.WorkflowStep,Hrm.Shared.App.Tables.WorkflowStep,Hrm.Server.Services.App.WorkflowTransactionDataModel,System.Collections.Generic.List{Hrm.Server.Services.App.WorkflowTransactionTaskAssignedWorkerModel})">
+        <member name="M:Hrm.Server.Services.Request.RequestFormServices.SendRequestEmail(Hrm.Shared.Request.Tables.RequestForm,System.Nullable{System.Guid},Hrm.Shared.App.Tables.WorkflowStep,Hrm.Shared.App.Tables.WorkflowStep,Hrm.Server.Services.App.WorkflowTransactionDataModel,Hrm.Server.Services.App.WorkflowUpdateModel)">
             <summary>
             Sends an email notification for a request form.
             </summary>
@@ -1938,7 +1935,7 @@
             <param name="currentStep">The current workflow step.</param>
             <param name="newStep">The new workflow step.</param>
             <param name="workflowTransactionData">The workflow transaction data model.</param>
-            <param name="assignee">The list of workers assigned to the task.</param>
+            <param name="updateModel">Updated workflow model the list of workers assigned to the task and comment.</param>
             <returns>A task that represents the asynchronous operation.</returns>
         </member>
         <member name="T:Hrm.Server.Services.TimeAttendance.LeaveRequestViewService">
