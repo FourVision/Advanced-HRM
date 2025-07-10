@@ -279,6 +279,11 @@
             <param name="tolerance">Optional tolerance for decimal precision errors. Default is 0.000001.</param>
             <returns>True if the value is a valid multiple of the step, false otherwise.</returns>
         </member>
+        <member name="T:Hrm.Shared.App.Models.LicenseCount">
+            <summary>
+            Represents the license count details and status.
+            </summary>
+        </member>
         <member name="P:Hrm.Shared.App.Models.MenuItem.Name">
             <summary>
             Key item name
@@ -847,6 +852,11 @@
         <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.UserType">
             <summary>
             A string value that can be used to classify user types in your directory, such as "Member" and "Guest". Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.TimeAttendance.Tables.HolidayCalendarLine.StartDate">
+            <summary>
+            Not mapped property.
             </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.ReplaceWhiteSpace_0">

@@ -594,6 +594,11 @@ html[dir="rtl"] .rz-sidebar-toggle.rotate {
     text-transform: capitalize !important
 }
 
+.rz-button.no-text-trans {
+    text-transform: none !important
+}
+
+
     .rz-button.rz-state-disabled {
         cursor: not-allowed
     }
@@ -609,10 +614,6 @@ html[dir="rtl"] .rz-sidebar-toggle.rotate {
 
 .arrow-none .rz-button-icon-only {
     display: none
-}
-
-.rz-button.no-text-trans {
-    text-transform: none !important
 }
 
 .rz-splitbutton {
@@ -1597,9 +1598,12 @@ ul.rz-tabview-nav > li {
 }
 
 .rz-chart {
-    min-height: 300px;
+    min-height: 255px;
+    height: 255px;
 }
-
+.rz-legend.rz-legend-right {
+    height: max-content;
+}
 .signOff-img .image-text {
     text-align: center;
     color: var(--rz-text-color);
@@ -1814,14 +1818,25 @@ div[id^="popup-customWidth-"] {
     background: #f7f7f7;
 }
 
-.fix-header ~ .boarding-details ul.rz-tabview-nav {
-    top: 36px !important;
+    .fix-header ~ .boarding-details ul.rz-tabview-nav {
+        top: 36px !important;
+    }
+
+    .fix-header ~ .boarding-details .sticky-section {
+        top: 90px !important;
+    }
+
+.rz-radiobutton-box.rz-state-active.rz-state-disabled {
+    box-shadow: var(--rz-input-disabled-shadow);
+    background-color: var(--rz-input-disabled-background-color);
+    border: var(--rz-input-disabled-border);
+    border-width: var(--rz-radio-border-width);
+    opacity: var(--rz-input-disabled-opacity);
 }
 
-.fix-header ~ .boarding-details .sticky-section {
-    top: 90px !important;
+.rz-radiobutton-box.rz-state-active.rz-state-disabled .rz-radiobutton-icon {
+    background: var(--rz-checkbox-checked-disabled-background-color);
 }
-
 
 /*/*Responsive breakpoints to adjust the layout based on the screen size of the device in use.*/
 /* On screens that are 1280px or less*/
