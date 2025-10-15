@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     font-size: var(--rz-root-font-size);
     --rz-profile-menu-top-item-background-color: var(--rz-primary-lighter);
     --rz-sidebar-toggle-icon-width: 14px;
@@ -594,9 +594,9 @@ html[dir="rtl"] .rz-sidebar-toggle.rotate {
     text-transform: capitalize !important
 }
 
-.rz-button.no-text-trans {
-    text-transform: none !important
-}
+    .rz-button.no-text-trans {
+        text-transform: none !important
+    }
 
 
     .rz-button.rz-state-disabled {
@@ -1172,6 +1172,92 @@ ul.rz-tabview-nav > li {
 }
 
     .ph-v:before {
+        content: "\25BC"; /* ▼ arrow */
+        position: absolute;
+        top: 100%; /* below element */
+        left: 50%;
+        transform: translateX(-50%); /* keep the line centered */
+        height: 45px; /* line length */
+        border-left: 2px solid var(--rz-base-400);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* arrow at bottom of line */
+        align-items: center;
+        color: var(--rz-base-400);
+        font-size: 18px;
+        line-height: 0.4;
+        width: 0;
+        text-indent: -1px; /* move arrow left */
+    }
+
+.ph-t:after {
+    content: "\25B2"; /* ▲ arrow */
+    position: absolute;
+    bottom: 100%; /* line goes upward */
+    left: 50%;
+    transform: translateX(-50%);
+    height: 45px; /* line length */
+    border-left: 2px solid var(--rz-base-400);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* arrow at top of the line */
+    align-items: center;
+    color: var(--rz-base-400);
+    font-size: 18px; /* arrow size */
+    line-height: 0.4;
+    width: 0;
+    text-indent: -2px;
+}
+
+.ph-tb:after {
+    content: "\25B2";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 43px;
+    border-left: 2px solid var(--rz-base-400);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--rz-base-400);
+    font-size: 18px;
+    line-height: 0.4;
+    width: 0;
+    margin-top: 4px;
+    text-indent: -2px;
+    top: 100%;
+}
+
+.ph-bv:before {
+    content: "\25BC";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 45px;
+    border-left: 2px solid var(--rz-base-400);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    color: var(--rz-base-400);
+    font-size: 18px;
+    line-height: 0.4;
+    width: 0;
+    margin-bottom: 4px;
+    text-indent: -1px;
+}
+
+.ph-v:last-child:before {
+    display: none;
+}
+
+.sh-v {
+    position: relative;
+}
+
+    .sh-v::before {
         content: "";
         border-left: 2px solid var(--rz-base-400);
         position: absolute;
@@ -1179,11 +1265,12 @@ ul.rz-tabview-nav > li {
         left: 50%;
         transform: translate(-50%, 0);
         height: 50px;
+        background: red;
     }
 
-    .ph-v:last-child:before {
-        display: none;
-    }
+.border-e5 {
+    border: 1px solid #e5e5e5
+}
 
 
 .drag-drop .hr-line::before {
@@ -1521,8 +1608,9 @@ ul.rz-tabview-nav > li {
     width: 100%;
     z-index: 3;
     background: #fff;
-    padding: 15px 2px 2px;
-    margin: -15px -2px 1px 0px;
+    padding: 12px 12px 2px;
+    margin: -15px -2px 7px 0px;
+    border-radius: 0.625rem;
 }
 
 .bar-inside-pannel .rz-tabview-panels:has(.page-action-bar) {
@@ -1601,9 +1689,11 @@ ul.rz-tabview-nav > li {
     min-height: 255px;
     height: 255px;
 }
+
 .rz-legend.rz-legend-right {
     height: max-content;
 }
+
 .signOff-img .image-text {
     text-align: center;
     color: var(--rz-text-color);
@@ -1799,6 +1889,16 @@ div[id^="popup-customWidth-"] {
     padding-top: 12px;
 }
 
+.boarding-details ul.rz-tabview-nav {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    z-index: 3;
+    background: #f7f7f7;
+    margin: -15px -2px 1px 0px;
+    padding-top: 12px;
+}
+
 .sticky-section {
     position: sticky;
     top: 50px;
@@ -1807,7 +1907,7 @@ div[id^="popup-customWidth-"] {
     background: white;
 }
 
-.boarding-details .rz-tabview-panels {
+.boarding-details .rz-tabview-panels, .rz-tab-overflow-visible .rz-tabview-panels {
     overflow: visible;
 }
 
@@ -1834,10 +1934,43 @@ div[id^="popup-customWidth-"] {
     opacity: var(--rz-input-disabled-opacity);
 }
 
-.rz-radiobutton-box.rz-state-active.rz-state-disabled .rz-radiobutton-icon {
-    background: var(--rz-checkbox-checked-disabled-background-color);
+    .rz-radiobutton-box.rz-state-active.rz-state-disabled .rz-radiobutton-icon {
+        background: var(--rz-checkbox-checked-disabled-background-color);
+    }
+
+.rz-custom-list {
+    max-height: 200px;
+    overflow-x: hidden;
+    background: var(--rz-dropdown-open-background-color);
+    box-shadow: var(--rz-dropdown-panel-shadow);
+    margin: 0 0.2rem;
 }
 
+.rz-custom-row .rz-g {
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: var(--rz-gap);
+    row-gap: var(--rz-row-gap);
+}
+
+.rz-custom-row .rz-col {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.rz-custom-row .rz-g > div {
+    flex: none;
+}
+
+.rz-background-loader .rz-progressbar-circular {
+    margin: 0 auto;
+}
+
+.rz-background-loader .rz-progressbar-circular .rz-progressbar-circular-label {
+    font-size: 15px;
+    font-weight: 500;
+}
 /*/*Responsive breakpoints to adjust the layout based on the screen size of the device in use.*/
 /* On screens that are 1280px or less*/
 @media screen and (max-width: 1440px) {
@@ -2131,4 +2264,42 @@ div[id^="popup-customWidth-"] {
 
 .rz-tick .rz-tick-text {
     fill: var(--rz-text-color);
+}
+
+.rz-listbox-list-wrapper {
+    scrollbar-width: thin;
+}
+
+.rz-listbox-header {
+    border-bottom: 1px solid #bdbdbd;
+}
+
+.rz-listbox-list {
+    border: 1px solid #eee;
+}
+
+.rz-multiselect-item {
+    border-bottom: 1px solid #bdbdbd;
+}
+
+.rz-chkbox-box.rz-state-active {
+    border: 1px solid var(--rz-on-primary);
+}
+/*use class split-button-arrow-none to hide arrow icon from split button */
+.split-button-arrow-none .rz-splitbutton-menubutton {
+    display: none
+}
+
+.drag-over td {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.selected 
+{
+    background-color: var(--rz-primary-lighter) !important;
+}
+.rz-data-grid .rz-data-grid-data .rz-grid-table .rz-data-row .no-header {
+    padding: 3px;
+    border-radius: var(--rz-card-border-radius);
 }

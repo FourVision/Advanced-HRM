@@ -279,6 +279,51 @@
             <param name="tolerance">Optional tolerance for decimal precision errors. Default is 0.000001.</param>
             <returns>True if the value is a valid multiple of the step, false otherwise.</returns>
         </member>
+        <member name="T:Hrm.Shared.App.Models.ColumnData">
+            <summary>
+            Represents column data information.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.ColumnData.Name">
+            <summary>
+            Gets or sets the name of the column.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.ColumnData.Type">
+            <summary>
+            Gets or sets the type of the column.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.ColumnData.IsRelatedType">
+            <summary>
+            Gets or sets a value indicating whether the column is a related type.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.ColumnData.IsJsonColumn">
+            <summary>
+            Gets or sets a value indicating whether the column is a JSON column.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.ColumnData.RelatedProperty">
+            <summary>
+            Gets or sets the related property name.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.ColumnData.PropertyInfo">
+            <summary>
+            Gets or sets the property information.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.ColumnData.IsCustomField">
+            <summary>
+            Gets or sets a value indicating whether the column is a custom field.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.App.Models.ConnectorModel.DocuSignSetting.ConnectKey">
+            <summary>
+            Connect key (from DocuSign Connect configuration)
+            </summary>
+        </member>
         <member name="T:Hrm.Shared.App.Models.LicenseCount">
             <summary>
             Represents the license count details and status.
@@ -496,6 +541,173 @@
             <summary>
             Class collection with ISO utils, mainly containing static lists
             </summary>
+        </member>
+        <member name="T:Hrm.Shared.App.Utils.ImportFile">
+            <summary>
+            Provides utility methods for importing and unpacking export files.
+            </summary>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.UnpackExportFile``1(System.Byte[])">
+            <summary>
+            Unpacks an export file from a byte array containing JSON data.
+            </summary>
+            <typeparam name="TRecord">The type to deserialize the unpacked content to.</typeparam>
+            <param name="jsonBytes">The byte array containing the JSON representation of the import record.</param>
+            <returns>
+            A tuple containing:
+            <list type="bullet">
+            <item>
+            <description>An instance of <typeparamref name="TRecord"/> deserialized from the unpacked export file.</description>
+            </item>
+            <item>
+            <description>The decompressed metadata as a string.</description>
+            </item>
+            </list>
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Thrown when <paramref name="jsonBytes"/> is <c>null</c> or empty.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown when the deserialized <see cref="T:Hrm.Shared.App.Models.ImportRecord"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.UnpackImportRecord(System.Byte[])">
+            <summary>
+            Deserializes a byte array containing JSON data into an <see cref="T:Hrm.Shared.App.Models.ImportRecord"/> instance.
+            </summary>
+            <param name="jsonBytes">The byte array containing the JSON representation of the import record.</param>
+            <returns>
+            An <see cref="T:Hrm.Shared.App.Models.ImportRecord"/> instance deserialized from the provided JSON bytes.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Thrown when <paramref name="jsonBytes"/> is <c>null</c> or empty.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown when the deserialized <see cref="T:Hrm.Shared.App.Models.ImportRecord"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.UnpackMetaDataRecords``1(System.String)">
+            <summary>
+            Unpacks metadata records for the specified <typeparamref name="TRecord"/> type from a JSON metadata string.
+            </summary>
+            <typeparam name="TRecord">The type of record for which metadata is being unpacked.</typeparam>
+            <param name="metaData">A JSON string representing the packed metadata.</param>
+            <returns>
+            A dictionary containing the unpacked metadata records as <see cref="T:System.Guid"/> keys and <see cref="T:System.String"/> values,
+            or <c>null</c> if <paramref name="metaData"/> is <c>null</c> or empty.
+            </returns>
+            <exception cref="T:System.FormatException">
+            Thrown when <paramref name="metaData"/> is not a valid JSON string.
+            </exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.UnpackMetaDataObject``1(System.String)">
+            <summary>
+            Unpacks the metadata object for the specified <typeparamref name="TRecord"/> type from a JSON metadata string.
+            </summary>
+            <typeparam name="TRecord">The type of record for which metadata is being unpacked.</typeparam>
+            <param name="metaData">A JSON string representing the packed metadata.</param>
+            <returns>
+            The metadata object as a JSON string for the specified <typeparamref name="TRecord"/> type,
+            or <c>null</c> if <paramref name="metaData"/> is <c>null</c> or empty.
+            </returns>
+            <exception cref="T:System.FormatException">
+            Thrown when <paramref name="metaData"/> is not a valid JSON string.
+            </exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.PackMetaDataRecords``1(System.Collections.Generic.Dictionary{System.Guid,System.String},System.String)">
+            <summary>
+            Packs metadata records for the specified <typeparamref name="TRecord"/> type.
+            </summary>
+            <typeparam name="TRecord">The type of record for which metadata is being packed.</typeparam>
+            <param name="dataRecords">A dictionary containing data records to be serialized as metadata.</param>
+            <param name="appendMetaData">Optional. A JSON string representing additional metadata to append.</param>
+            <returns>
+            A JSON string representing the packed metadata, including the serialized <paramref name="dataRecords"/> and any appended metadata.
+            </returns>
+            <exception cref="T:System.FormatException">
+            Thrown when <paramref name="appendMetaData"/> is not a valid JSON string.
+            </exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.PackMetaDataObject``1(System.String,System.String)">
+            <summary>
+            Packs a JSON object as metadata for the specified <typeparamref name="TRecord"/> type.
+            </summary>
+            <typeparam name="TRecord">The type of record for which metadata is being packed.</typeparam>
+            <param name="jsonObject">A JSON string representing the object to be included in the metadata.</param>
+            <param name="appendMetaData">Optional. A JSON string representing additional metadata to append.</param>
+            <returns>
+            A JSON string representing the packed metadata, including the serialized <paramref name="jsonObject"/> and any appended metadata.
+            </returns>
+            <exception cref="T:System.FormatException">
+            Thrown when <paramref name="appendMetaData"/> is not a valid JSON string.
+            </exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.UnpackExportFile``1(Hrm.Shared.App.Models.ImportRecord)">
+            <summary>
+            Unpacks and deserializes an export file from the specified <see cref="T:Hrm.Shared.App.Models.ImportRecord"/>.
+            </summary>
+            <typeparam name="TRecord">The type to deserialize the unpacked content to.</typeparam>
+            <param name="importContext">The import context containing metadata and the packed content.</param>
+            <returns>
+            A tuple containing:
+            <list type="bullet">
+            <item>
+            <description>An instance of <typeparamref name="TRecord"/> deserialized from the unpacked export file.</description>
+            </item>
+            <item>
+            <description>The decompressed metadata as a string.</description>
+            </item>
+            </list>
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when <paramref name="importContext"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Thrown when required properties of <paramref name="importContext"/> are missing or invalid.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown when the product name is unsupported.
+            </exception>
+            <exception cref="T:System.FormatException">
+            Thrown when the content or metadata is not a valid Base64 string.
+            </exception>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.BuildMap(System.Collections.Generic.Dictionary{System.Guid,System.String},System.Collections.Generic.Dictionary{System.String,System.Guid})">
+            <summary>
+            Builds a mapping from import record GUIDs to corresponding database GUIDs.
+            </summary>
+            <param name="importMapper">
+            A dictionary mapping import record GUIDs to their string identifiers.
+            </param>
+            <param name="databaseMapper">
+            A dictionary mapping string identifiers to database GUIDs.
+            </param>
+            <returns>
+            A dictionary mapping each import record GUID to its corresponding database GUID if found; otherwise, <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.MapHelper(System.Collections.Generic.Dictionary{System.Guid,System.Nullable{System.Guid}},System.Guid)">
+            <summary>
+            Maps the specified <paramref name="mapId"/> using the provided <paramref name="guidMapper"/> dictionary.
+            If a mapping exists, returns the mapped <see cref="T:System.Guid"/>; otherwise, returns the original <paramref name="mapId"/>.
+            If the result is <c>null</c>, returns <see cref="F:System.Guid.Empty"/>.
+            </summary>
+            <param name="guidMapper">A dictionary mapping source <see cref="T:System.Guid"/>s to target <see cref="T:System.Guid"/>s (nullable).</param>
+            <param name="mapId">The <see cref="T:System.Guid"/> to map.</param>
+            <returns>
+            The mapped <see cref="T:System.Guid"/> if found; otherwise, the original <paramref name="mapId"/> or <see cref="F:System.Guid.Empty"/> if the result is <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Hrm.Shared.App.Utils.ImportFile.MapHelper(System.Collections.Generic.Dictionary{System.Guid,System.Nullable{System.Guid}},System.Nullable{System.Guid})">
+            <summary>
+            Maps the specified nullable <paramref name="mapId"/> using the provided <paramref name="guidMapper"/> dictionary.
+            If a mapping exists, returns the mapped <see cref="T:System.Guid"/>; otherwise, returns the original <paramref name="mapId"/>.
+            </summary>
+            <param name="guidMapper">A dictionary mapping source <see cref="T:System.Guid"/>s to target <see cref="T:System.Guid"/>s (nullable).</param>
+            <param name="mapId">The nullable <see cref="T:System.Guid"/> to map.</param>
+            <returns>
+            The mapped <see cref="T:System.Guid"/> if found; otherwise, the original <paramref name="mapId"/>.
+            </returns>
         </member>
         <member name="T:Hrm.Shared.App.Utils.IsoUtils">
             <summary>
@@ -847,6 +1059,51 @@
         <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.EmployeeType">
             <summary>
             Captures enterprise worker type: Employee, Contractor, Consultant, Vendor, etc. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.OfficeLocation">
+            <summary>
+            The office location in the user's place of business.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.StreetAddress">
+            <summary>
+            The street address of the user's place of business. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.City">
+            <summary>
+            The city in which the user is located. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.State">
+            <summary>
+            The state or province in the user's address. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.PostalCode">
+            <summary>
+            The postal code for the user's postal address. The postal code is specific to the user's country/region. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.Country">
+            <summary>
+            The country/region in which the user is located; for example, "US" or "UK". Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.BusinessPhones">
+            <summary>
+            The telephone numbers for the user. Note: Although this is a string collection, only one number can be set for this property.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.Mail">
+            <summary>
+            The SMTP address for the user, for example, "jeff@contoso.onmicrosoft.com". Read-only for users synced with Azure AD. Supports $filter.
+            </summary>
+        </member>
+        <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.UsageLocation">
+            <summary>
+            A two-letter country code (ISO standard 3166). Required for users that are assigned licenses due to legal requirements to check for availability of services in countries/regions.
             </summary>
         </member>
         <member name="P:Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee.EntraRecord.UserType">
