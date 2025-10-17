@@ -2029,15 +2029,6 @@
             Validates the EDM model to ensure all expected endpoints exist.
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.OData.IntAsEnumResolver.PromoteBinaryOperandTypes(Microsoft.OData.UriParser.BinaryOperatorKind,Microsoft.OData.UriParser.SingleValueNode@,Microsoft.OData.UriParser.SingleValueNode@,Microsoft.OData.Edm.IEdmTypeReference@)">
-            <summary>
-            Promote the left and right operand types, supports enum property and string constant scenario.
-            </summary>
-            <param name="binaryOperatorKind">the operator kind</param>
-            <param name="leftNode">the left operand</param>
-            <param name="rightNode">the right operand</param>
-            <param name="typeReference">type reference for the result BinaryOperatorNode.</param>
-        </member>
         <member name="M:Hrm.Server.Services.Organization.WorkerPositionServices.FlushAll">
             <summary>
             Flush the cache; make sure to relay all nodes by calling the service bus notifier [FlushWorkerPositionServices]
