@@ -10,6 +10,26 @@
             </summary>
             <param name="obj">The batch scheduler object to check.</param>
         </member>
+        <member name="M:Hrm.Server.Controllers.App.DashboardSetupsController.ExportFileAsync(System.Guid)">
+            <summary>
+            Exports the specified <see cref="T:Hrm.Shared.App.Tables.DashboardSetup"/> as a file.
+            </summary>
+            <param name="key">The unique identifier of the <see cref="T:Hrm.Shared.App.Tables.DashboardSetup"/> to export.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file stream if successful;
+            otherwise, a <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>, <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>, or <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/>.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.App.RolesController.ExportFileAsync(System.Guid)">
+            <summary>
+            Exports a role and its dashboard setup metadata as a file.
+            </summary>
+            <param name="key">The unique identifier of the role to export.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file stream if successful,
+            or a <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> or <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/> if the request is invalid or not permitted.
+            </returns>
+        </member>
         <member name="T:Hrm.Server.Controllers.App.WikiController">
             <summary>
             API controller for handling Wiki-related operations such as retrieving pages, searching, and downloading attachments.
@@ -45,6 +65,36 @@
             <returns>
             The Wiki page content, a file download, or a NotFound/Unauthorized result.
             </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.App.WorkflowsController.UpdateSecurityProfilesAsync(Hrm.Shared.App.Tables.Workflow)">
+            <summary>
+            Updates the security profiles associated with the workflow if the workflow type is <see cref="F:Hrm.Shared.App.Enums.WorkflowType.RequestForm"/>.
+            This method iterates through all <see cref="T:Hrm.Shared.Request.Tables.RequestType"/> entities linked to the workflow and upgrades their corresponding
+            <see cref="T:Hrm.Shared.Request.Tables.RequestSecurityProfile"/> entities using <see cref="M:Hrm.Server.Services.Request.CustomFormService.UpgradeRequestSecurityProfile(Hrm.Server.Data.DatabaseContext,Hrm.Shared.Request.Tables.RequestSecurityProfile)"/>.
+            If any updates are made, changes are saved to the database context.
+            </summary>
+            <param name="dbObj">The <see cref="T:Hrm.Shared.App.Tables.Workflow"/> database object for which security profiles should be updated.</param>
+        </member>
+        <member name="M:Hrm.Server.Controllers.App.WorkflowsController.GetPerformanceWorkflowStepSettings(Hrm.Shared.App.Tables.Workflow)">
+            <summary>
+            Getting all steps except the EndApproved and EndRejected steps for performance review workflow
+            </summary>
+            <param name="workflow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.App.WorkflowsController.ExportFileAsync(System.Guid)">
+            <summary>
+            Exports the specified <see cref="T:Hrm.Shared.App.Tables.Workflow"/> as a file.
+            </summary>
+            <param name="key">The unique identifier of the <see cref="T:Hrm.Shared.App.Tables.Workflow"/> to export.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file stream if successful;
+            otherwise, a <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>, <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>, or <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/>.
+            </returns>
+            <remarks>
+            This method checks user privileges, validates the input key, and ensures the workflow exists.
+            It then serializes step names as metadata and generates the export file.
+            </remarks>
         </member>
         <member name="M:Hrm.Server.Controllers.OData.ODataController`1.Clone(`0)">
             <summary>
@@ -130,7 +180,7 @@
             <param name="dbObj">The newly created and persisted object of type <typeparamref name="T"/>. This parameter cannot be null.</param>
             <returns>A task that represents the asynchronous operation.</returns>
         </member>
-        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.AfterPut(`0)">
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.AfterPut(`0,`0)">
             <summary>
             Executes additional logic after an object of type <typeparamref name="T"/> has been updated or inserted into
             the database.
@@ -140,7 +190,7 @@
             <param name="dbObj">The object of type <typeparamref name="T"/> that was updated or inserted. This parameter cannot be null.</param>
             <returns>A task that represents the asynchronous operation.</returns>
         </member>
-        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.AfterPatch(`0)">
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.AfterPatch(`0,`0)">
             <summary>
             Executes additional logic after a patch operation is completed.
             </summary>
@@ -158,6 +208,65 @@
             <param name="dbObj">The object that was deleted. This parameter cannot be null.</param>
             <returns>A task that represents the asynchronous operation.</returns>
         </member>
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.GetExportDataSource(Microsoft.EntityFrameworkCore.DbSet{`0},System.Collections.Generic.List{System.String})">
+            <summary>
+            Returns the export data source for the current OData entity set.
+            Override this method in derived controllers to filter or transform the export data.
+            </summary>
+            <param name="queryable">The <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1"/> representing the entity set.</param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> representing the export data source.</returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.ExportAsync(System.String,Hrm.Server.Services.OData.ODataCacheService)">
+            <summary>
+            Exports data from the current OData entity set in the specified format.
+            </summary>
+            <param name="format">The export format (e.g., "xlsx", "csv", "json").</param>
+            <param name="oDataCacheService">The OData cache service used to resolve entity set names.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file, or a <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>
+            if the format is not supported or an error occurs during export.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.GenerateExportView``1(System.String,System.Linq.IQueryable{``0},Hrm.Server.Services.OData.ODataCacheService)">
+            <summary>
+            Generates an export file for a view model collection in the specified format.
+            </summary>
+            <typeparam name="TView">The type of the view model, which must inherit from <see cref="T:Hrm.Shared.App.Views.BaseView"/>.</typeparam>
+            <param name="format">The export format (e.g., "xlsx", "csv", "json").</param>
+            <param name="items">The queryable collection of view model items to export.</param>
+            <param name="oDataCacheService">The OData cache service used to resolve entity set names.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file, or a <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>
+            if the format is not supported or an error occurs during export.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.GenerateExportReport``1(System.String,System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Generates an export report file in the specified format for a collection of records.
+            </summary>
+            <typeparam name="TRecord">The type of the records to export. Must be a class.</typeparam>
+            <param name="format">The export format (e.g., "xlsx", "csv", "json").</param>
+            <param name="items">The collection of records to export.</param>
+            <param name="fileName">The base name of the export file (without extension).</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file, or a <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>
+            if the format is not supported or an error occurs during export.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.OData.ODataController`1.GenerateExportFile``1(System.Guid,``0,System.String)">
+            <summary>
+            Generates an export file for a given record, serializing and compressing the record data.
+            To unpack it, use the <see cref="M:Hrm.Shared.App.Utils.ImportFile.UnpackExportFile``1(Hrm.Shared.App.Models.ImportRecord)"/> method.
+            </summary>
+            <typeparam name="TRecord">The type of the record to export. Must be a class.</typeparam>
+            <param name="recordId">The unique identifier of the record.</param>
+            <param name="item">The record instance to export.</param>
+            <param name="metaData">Optional metadata to include in the export file. Defaults to an empty string.</param>
+            <returns>
+            A <see cref="T:Hrm.Server.Services.App.ImportExport.ActionResults.FileCallbackResult"/> containing the compressed and serialized record data,
+            or a <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> if the input is invalid.
+            </returns>
+        </member>
         <member name="M:Hrm.Server.Controllers.Organization.EmploymentDetailsController.PrePost(Hrm.Shared.Organization.Tables.EmploymentDetail)">
             <summary>
             Create new record and expires the existing records matching with employmentId
@@ -172,6 +281,40 @@
             <param name="obj"></param>
             <returns></returns>
             
+        </member>
+        <member name="M:Hrm.Server.Controllers.PayrollInterface.PayrollConfigurationsController.ExportFileAsync(System.Guid)">
+            <summary>
+            Exports the specified <see cref="T:Hrm.Shared.PayrollInterface.Tables.PayrollConfiguration"/> as a file.
+            </summary>
+            <param name="key">The unique identifier of the <see cref="T:Hrm.Shared.PayrollInterface.Tables.PayrollConfiguration"/> to export.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file stream if successful;
+            otherwise, a <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>, <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>, or <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/>.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Request.CustomFormsController.ExportFileAsync(System.Guid)">
+            <summary>
+            Exports the specified <see cref="T:Hrm.Shared.Request.Tables.CustomForm"/> as a file.
+            </summary>
+            <param name="key">The unique identifier of the <see cref="T:Hrm.Shared.Request.Tables.CustomForm"/> to export.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file stream if successful;
+            otherwise, a <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>, <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>, or <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/>.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Request.RequestSecurityProfilesController.ExportFileAsync(System.Guid)">
+            <summary>
+            Exports the specified <see cref="T:Hrm.Shared.Request.Tables.RequestSecurityProfile"/> as a file.
+            </summary>
+            <param name="key">The unique identifier of the <see cref="T:Hrm.Shared.Request.Tables.RequestSecurityProfile"/> to export.</param>
+            <returns>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> containing the exported file stream if successful;
+            otherwise, a <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>, <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>, or <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/>.
+            </returns>
+            <remarks>
+            This method checks user privileges, validates the input key, and ensures the profile exists.
+            It then serializes role names as metadata and generates the export file.
+            </remarks>
         </member>
         <member name="M:Hrm.Server.Data.DemoDataSetup.DomainName">
             <remarks>
@@ -276,16 +419,16 @@
         <member name="M:Hrm.Server.Data.Migrations.Hrm450.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Hrm.Server.Data.Migrations.Hrm451">
+        <member name="T:Hrm.Server.Data.Migrations.Hrm460">
             <inheritdoc />
         </member>
-        <member name="M:Hrm.Server.Data.Migrations.Hrm451.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Hrm.Server.Data.Migrations.Hrm460.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Hrm.Server.Data.Migrations.Hrm451.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Hrm.Server.Data.Migrations.Hrm460.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Hrm.Server.Data.Migrations.Hrm451.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Hrm.Server.Data.Migrations.Hrm460.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler">
@@ -298,7 +441,7 @@
             Handles batch scheduler messages and processes them accordingly.
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.ProcessMessageAsync(Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerMessage)">
+        <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.ProcessMessageAsync(Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerMessage,System.Threading.CancellationToken)">
             <summary>
             Processes the batch scheduler message asynchronously.
             </summary>
@@ -337,8 +480,22 @@
         </member>
         <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.RunSendNotificationsProcessAsync">
             <summary>
-            Send a notification message accordng to the batch scheduler settings.
+            Send a notification message according to the batch scheduler settings.
             </summary>
+            <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.RunDocumentRetentionRuleProcessAsync(Hrm.Shared.App.Tables.DocumentRetentionRuleParameters)">
+            <summary>
+            Runs the document retention rule process asynchronously by sending a message with the specified retention rule parameters.
+            </summary>
+            <param name="retentionRuleParameters">The parameters for the document retention rule process. If null, a default instance is used.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.BackgroundJobs.BatchSchedulerHandler.RunEmploymentTerminations(Hrm.Shared.App.Tables.EmploymentTerminationParameters)">
+            <summary>
+            Runs the employment terminations process asynchronously by sending a message with the specified termination parameters.
+            </summary>
+            <param name="terminationParameters">The parameters for the employment terminations process.</param>
             <returns>A task that represents the asynchronous operation.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.BatchSchedulerServices.ExecuteAsync(System.Threading.CancellationToken)">
@@ -484,7 +641,7 @@
             Releases all resources used by the BusinessCentralServices.
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.App.CredentialsHelper.GetEnvirionmentVariables(Hrm.Server.Services.App.AzureServices)">
+        <member name="M:Hrm.Server.Services.App.CredentialsHelper.GetEnvironmentVariables(Hrm.Server.Services.App.AzureServices)">
             <summary>
             Initiates environment variables used on different places in the app
             </summary>
@@ -585,7 +742,7 @@
             Retrieves a list of employment IDs based on the provided filter options.
             </summary>
             <param name="DbContext">The database context to use for querying.</param>
-            <param name="obj">The filter options to apply to the query.</param>
+            <param name="obj">The filter options to apply to the query.</param>>
             <returns>A list of employment IDs that match the filter criteria.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.FourVisionServices.GetFourVisionClientAsync">
@@ -671,41 +828,6 @@
         <member name="M:Hrm.Server.Services.App.ImportExport.ActionResults.FileCallbackResult.ExecuteResultAsync(Microsoft.AspNetCore.Mvc.ActionContext)">
             <inheritdoc />
         </member>
-        <member name="T:Hrm.Server.Services.App.ImportExport.ColumnData">
-            <summary>
-            Represents column data information.
-            </summary>
-        </member>
-        <member name="P:Hrm.Server.Services.App.ImportExport.ColumnData.Name">
-            <summary>
-            Gets or sets the name of the column.
-            </summary>
-        </member>
-        <member name="P:Hrm.Server.Services.App.ImportExport.ColumnData.Type">
-            <summary>
-            Gets or sets the type of the column.
-            </summary>
-        </member>
-        <member name="P:Hrm.Server.Services.App.ImportExport.ColumnData.IsRelatedType">
-            <summary>
-            Gets or sets a value indicating whether the column is a related type.
-            </summary>
-        </member>
-        <member name="P:Hrm.Server.Services.App.ImportExport.ColumnData.IsJsonColumn">
-            <summary>
-            Gets or sets a value indicating whether the column is a JSON column.
-            </summary>
-        </member>
-        <member name="P:Hrm.Server.Services.App.ImportExport.ColumnData.RelatedProperty">
-            <summary>
-            Gets or sets the related property name.
-            </summary>
-        </member>
-        <member name="P:Hrm.Server.Services.App.ImportExport.ColumnData.PropertyInfo">
-            <summary>
-            Gets or sets the property information.
-            </summary>
-        </member>
         <member name="T:Hrm.Server.Services.App.ImportExport.ImportExportUtils">
             <summary>
             Provides utility methods for import and export operations.
@@ -713,9 +835,12 @@
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.ImportExportTables">
             <summary>
-            Gets the list of import/export tables.
+            Gets a list of table names that are marked for import/export operations.
+            Only tables with the <see cref="T:Hrm.Shared.App.Attributes.ImportExportTableAttribute"/> are included.
             </summary>
-            <returns>A list of table names.</returns>
+            <returns>
+            A sorted list of table names that support import/export.
+            </returns>
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.SortImportExportTables(System.Collections.Generic.List{System.String},Hrm.Shared.App.Enums.ImportExportDirection)">
             <summary>
@@ -724,49 +849,6 @@
             <param name="tables">The list of table names.</param>
             <param name="direction">The import/export direction.</param>
             <returns>A sorted list of table names.</returns>
-        </member>
-        <member name="T:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Exceptions">
-            <summary>
-            Provides utility methods for handling exceptions.
-            </summary>
-        </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Exceptions.GetExceptionConstructor``1">
-            <summary>
-            Gets the constructor information for a specified exception type.
-            </summary>
-            <typeparam name="TException">The type of the exception.</typeparam>
-            <returns>The constructor information.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Exceptions.GetRelatedRecordNotFound(System.String,System.String)">
-            <summary>
-            Gets the error message for a related record not found.
-            </summary>
-            <param name="value">The value that was not found.</param>
-            <param name="table">The related table name.</param>
-            <returns>The error message.</returns>
-        </member>
-        <member name="T:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Serialization">
-            <summary>
-            Provides utility methods for serialization.
-            </summary>
-        </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Serialization.GetReadPropertyExpression(System.Linq.Expressions.ParameterExpression,Hrm.Server.Services.App.ImportExport.ColumnData,System.Boolean)">
-            <summary>
-            Gets the expression to read a property value.
-            </summary>
-            <param name="itemParameter">The parameter expression for the item.</param>
-            <param name="column">The column data.</param>
-            <param name="shouldWrap">Indicates whether the value should be wrapped.</param>
-            <returns>The expression to read the property value.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Serialization.GenerateSerializer``1(Hrm.Server.Services.App.ImportExport.ColumnData[],System.Boolean)">
-            <summary>
-            Generates a serializer action for a specified type.
-            </summary>
-            <typeparam name="T">The type of the item.</typeparam>
-            <param name="columns">The column data array.</param>
-            <param name="shouldWrap">Indicates whether the value should be wrapped.</param>
-            <returns>The serializer action.</returns>
         </member>
         <member name="T:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Types">
             <summary>
@@ -821,12 +903,28 @@
             <param name="type">The type of the item.</param>
             <returns>An array of column data.</returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Types.GetProperties(System.Type)">
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Types.GetCustomFields(Hrm.Server.Data.DatabaseContext,System.Type)">
             <summary>
-            Gets the properties for a specified type.
+            Retrieves custom field column data for a specified table type from the database context.
             </summary>
-            <param name="type">The type of the item.</param>
-            <returns>An array of property names.</returns>
+            <param name="context">The database context containing custom field configurations.</param>
+            <param name="type">The table type for which to retrieve custom fields.</param>
+            <returns>
+            An array of <see cref="T:Hrm.Shared.App.Models.ColumnData"/> representing the custom fields for the specified table type.
+            If the type does not inherit from <see cref="T:Hrm.Shared.App.Tables.BaseTable"/>, returns an empty array.
+            </returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Types.GetCustomFieldType(Hrm.Shared.App.Tables.FieldDataType)">
+            <summary>
+            Maps a <see cref="T:Hrm.Shared.App.Tables.FieldDataType"/> value to its corresponding .NET <see cref="T:System.Type"/>.
+            </summary>
+            <param name="dataType">The <see cref="T:Hrm.Shared.App.Tables.FieldDataType"/> to map.</param>
+            <returns>
+            The .NET <see cref="T:System.Type"/> that represents the specified <paramref name="dataType"/>.
+            </returns>
+            <exception cref="T:System.NotImplementedException">
+            Thrown if the specified <paramref name="dataType"/> is not supported by the import/export framework.
+            </exception>
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Types.IsSimpleType(System.Type)">
             <summary>
@@ -917,6 +1015,30 @@
             <param name="property">The property name.</param>
             <returns>The converted bool value, or <c>null</c> if the string is null or empty and the target type is nullable.</returns>
         </member>
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Converting.FormatExportValue(System.Object,System.Type,System.Reflection.PropertyInfo,System.Boolean)">
+            <summary>
+            Formats a value for export, handling special cases like JSON columns, dates, and null values.
+            </summary>
+            <param name="value">The value to format.</param>
+            <param name="type">The type of the value.</param>
+            <param name="prop">Property information containing metadata about the value.</param>
+            <param name="isJsonColumn">Indicates whether the value should be formatted as JSON.</param>
+            <returns>
+            A formatted string representation of the value:
+            - For JSON columns: JSON string or "[]" for null/empty collections
+            - For DateOnly: "yyyy-MM-dd" format
+            - For DateTimeOffset: "yyyy-MM-dd" if marked with DataType.Date, otherwise universal sortable ("u") format
+            - For null values: empty string
+            - For other types: string representation using invariant culture
+            </returns>
+            <remarks>
+            Special handling is provided for:
+            - JSON columns (using System.Text.Json serialization)
+            - Date formats (using specific format strings)
+            - Collections (checking for empty collections)
+            - Null values (returning empty string)
+            </remarks>
+        </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Csv.SplitLineAsync(System.IO.StreamReader,System.Int32)">
             <summary>
             Splits a line from a CSV file into columns asynchronously.
@@ -932,13 +1054,14 @@
             <param name="value">The value to clean.</param>
             <returns>The cleaned value.</returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Excel.GetCellValue(DocumentFormat.OpenXml.Spreadsheet.Cell,DocumentFormat.OpenXml.Packaging.SharedStringTablePart,DocumentFormat.OpenXml.Packaging.WorkbookPart)">
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Excel.GetCellValue(DocumentFormat.OpenXml.Spreadsheet.Cell,DocumentFormat.OpenXml.Packaging.SharedStringTablePart,DocumentFormat.OpenXml.Packaging.WorkbookPart,System.Type)">
             <summary>
             Gets the cell value from an Excel cell, with optional date/time conversion.
             </summary>
             <param name="cell">The cell.</param>
             <param name="sharedStringTablePart">The shared string table part.</param>
             <param name="workbookPart">The workbook part (optional, for style lookup).</param>
+            <param name="targetType">The target type for conversion (optional).</param>
             <returns>The cell value, converted if date/time.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Excel.IsDateTimeCell(DocumentFormat.OpenXml.Spreadsheet.Cell,DocumentFormat.OpenXml.Packaging.WorkbookPart,System.String@)">
@@ -982,22 +1105,6 @@
             <param name="memberExpression">The member expression.</param>
             <returns>The conditional expression.</returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Expressions.ExportDateOnlyColumn(System.Linq.Expressions.MemberExpression)">
-            <summary>
-            Generates an expression to export a DateOnly or DateTimeOffset column as a formatted string.
-            </summary>
-            <param name="memberExpression">The member expression representing the DateOnly or DateTimeOffset property.</param>
-            <returns>
-            An <see cref="T:System.Linq.Expressions.Expression"/> that calls the <c>ToString("yyyy-MM-dd")</c> method on the provided member expression.
-            </returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Expressions.ExportJsonColumn(System.Linq.Expressions.MemberExpression)">
-            <summary>
-            Gets the expression to export a JSON column.
-            </summary>
-            <param name="memberExpression">The member expression.</param>
-            <returns>The expression to export the JSON column.</returns>
-        </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Expressions.ImportJsonColumn(System.Linq.Expressions.ConstantExpression,System.Linq.Expressions.Expression)">
             <summary>
             Gets the expression to import a JSON column.
@@ -1006,15 +1113,7 @@
             <param name="arrayIndexExpression">The array index expression.</param>
             <returns>The expression to import the JSON column.</returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.Writers.CsvWriter.GenerateLineWriter``1(Hrm.Server.Services.App.ImportExport.ColumnData[])">
-            <summary>
-            Generates a delegate that writes a line of CSV data for a given object of type T into a StringBuilder.
-            </summary>
-            <typeparam name="T">The type of the object to write.</typeparam>
-            <param name="columns">An array of ColumnData objects describing the columns to be written.</param>
-            <returns>A delegate that writes a line of CSV data for a given object of type T into a StringBuilder.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.ImportExport.Writers.CsvWriter.WriteToStreamAsync``1(System.IO.Stream,System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Hrm.Server.Services.App.ImportExport.Writers.CsvWriter.WriteToStreamAsync``1(System.IO.Stream,System.Collections.Generic.IEnumerable{``0},Hrm.Shared.App.Models.ColumnData[])">
             <summary>
             Writes the source data to the stream in CSV format.
             </summary>
@@ -1247,11 +1346,25 @@
             Customer reference documentation: https://learn.microsoft.com/en-us/graph/auth-v2-service?tabs=http
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.App.MicrosoftEntraServices.#ctor(Hrm.Server.Data.DatabaseContext,Hrm.Server.Services.App.UserServices,Hrm.Server.Services.App.ConnectorServices,Hrm.Server.Services.App.Notifications.NotificationsServerService,Hrm.Server.Services.App.Messaging.Interfaces.IMessagePublisher)">
+        <member name="M:Hrm.Server.Services.App.MicrosoftEntraServices.#ctor(Hrm.Server.Data.DatabaseContext,Hrm.Server.Services.App.UserServices,Hrm.Server.Services.App.ConnectorServices,Azure.Storage.Blobs.BlobServiceClient,Hrm.Server.Services.Organization.WorkerPositionServices,Hrm.Server.Services.App.Notifications.NotificationsServerService,Hrm.Server.Services.App.Messaging.Interfaces.IMessagePublisher,Hrm.Server.Services.App.FilterGroupServices)">
             <summary>
             Microsoft Graph REST API v1.0 endpoint reference : https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0
             Customer reference documentation: https://learn.microsoft.com/en-us/graph/auth-v2-service?tabs=http
             </summary>
+        </member>
+        <member name="M:Hrm.Server.Services.App.MicrosoftEntraServices.GetUserPrincipalName(System.String,System.String,System.String,Hrm.Shared.Organization.Tables.Worker,System.Linq.IQueryable{Hrm.Shared.Connectors.MicrosoftEntra.Tables.MicrosoftEntraEmployee})">
+            <summary>
+            Generates a user principal name (UPN) for a Microsoft Entra user based on the provided format, domain, and worker information.
+            If <paramref name="userPrincipalName"/> is null or whitespace, constructs the UPN using the <paramref name="entraIdFormat"/> template and worker properties.
+            Ensures uniqueness by appending a numeric suffix if the base UPN already exists in <paramref name="microsoftEntraEmployees"/>.
+            Returns the existing <paramref name="userPrincipalName"/> in lowercase if provided.
+            </summary>
+            <param name="entraIdFormat">The format string for the UPN prefix, supporting placeholders: [FirstName], [MiddleName], [LastName], [PersonnelNumber].</param>
+            <param name="userPrincipalName">The existing user principal name, if any.</param>
+            <param name="domainName">The domain name to append to the UPN.</param>
+            <param name="worker">The worker record containing personal information.</param>
+            <param name="microsoftEntraEmployees">Queryable collection of existing Microsoft Entra employees for uniqueness checks.</param>
+            <returns>A unique, lowercase user principal name for the worker.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.MicrosoftEntraServices.Dispose(System.Boolean)">
             <summary>
@@ -1269,6 +1382,20 @@
             Updates the notice to all connected clients with the specified version.
             </summary>
             <param name="version">The version to update to the clients.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.Notifications.NotificationsServerService.NotifyBackgroundInvocationToClientsAsync(System.Guid,Hrm.Shared.App.Models.SignalRMessage)">
+            <summary>
+            Updates the notice to all connected clients with the specified key.
+            </summary>
+            <param name="message">The message to get to the record detail.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:Hrm.Server.Services.App.Notifications.NotificationsServerService.NotifyBackgroundRetrieveToClientsAsync(System.Guid,Hrm.Shared.App.Models.SignalRMessage)">
+            <summary>
+            Updates the notice to all connected clients with the specified key.
+            </summary>
+            <param name="message">The message to get to the record detail.</param>
             <returns>A task that represents the asynchronous operation.</returns>
         </member>
         <member name="M:Hrm.Server.Services.App.Notifications.NotificationsServerService.SplashClientsAsync(System.String,System.String,System.Boolean)">
@@ -1902,19 +2029,19 @@
             Validates the EDM model to ensure all expected endpoints exist.
             </summary>
         </member>
-        <member name="M:Hrm.Server.Services.OData.IntAsEnumResolver.PromoteBinaryOperandTypes(Microsoft.OData.UriParser.BinaryOperatorKind,Microsoft.OData.UriParser.SingleValueNode@,Microsoft.OData.UriParser.SingleValueNode@,Microsoft.OData.Edm.IEdmTypeReference@)">
-            <summary>
-            Promote the left and right operand types, supports enum property and string constant scenario.
-            </summary>
-            <param name="binaryOperatorKind">the operator kind</param>
-            <param name="leftNode">the left operand</param>
-            <param name="rightNode">the right operand</param>
-            <param name="typeReference">type reference for the result BinaryOperatorNode.</param>
-        </member>
         <member name="M:Hrm.Server.Services.Organization.WorkerPositionServices.FlushAll">
             <summary>
             Flush the cache; make sure to relay all nodes by calling the service bus notifier [FlushWorkerPositionServices]
             </summary>
+        </member>
+        <member name="M:Hrm.Server.Services.Performance.PerformanceReviewServices.UpdatePerformanceReviewSteps(Hrm.Shared.Performance.Tables.PerformanceReviewTemplate,System.Collections.Generic.List{Hrm.Shared.Performance.Tables.PRWorkflowStepSetting})">
+            <summary>
+            Ensures that each role in the performance review template contains all workflow steps.
+            Missing steps are added with default tab settings, while existing step names are updated.
+            Removing deleted steps from roles if they no longer exist in the workflow.
+            </summary>
+            <param name="template">The performance review template containing role and step settings.</param>
+            <param name="allSteps">The complete list of workflow steps that should exist for every role.</param>
         </member>
         <member name="T:Hrm.Server.Services.Request.CustomFormService">
             <summary>
@@ -1925,6 +2052,16 @@
             <summary>
             Flush the cache; make sure to relay all nodes by calling the service bus notifier [CustomFormService]
             </summary>
+        </member>
+        <member name="M:Hrm.Server.Services.Request.CustomFormService.UpgradeRequestSecurityProfile(Hrm.Server.Data.DatabaseContext,Hrm.Shared.Request.Tables.RequestSecurityProfile)">
+            <summary>
+            Upgrades the specified <see cref="T:Hrm.Shared.Request.Tables.RequestSecurityProfile"/> to the latest configuration from the database.
+            This method synchronizes the profile's role IDs, request group settings, and request type settings
+            with the current database state, ensuring all references are up-to-date and workflow step settings
+            are refreshed based on the latest workflow and custom form definitions.
+            </summary>
+            <param name="dbContext">The database context used to query current entities.</param>
+            <param name="profileToUpdate">The <see cref="T:Hrm.Shared.Request.Tables.RequestSecurityProfile"/> instance to upgrade.</param>
         </member>
         <member name="M:Hrm.Server.Services.Request.RequestFormServices.SendRequestEmail(Hrm.Shared.Request.Tables.RequestForm,System.Nullable{System.Guid},Hrm.Shared.App.Tables.WorkflowStep,Hrm.Shared.App.Tables.WorkflowStep,Hrm.Server.Services.App.WorkflowTransactionDataModel,Hrm.Server.Services.App.WorkflowUpdateModel)">
             <summary>

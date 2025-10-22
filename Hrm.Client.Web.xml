@@ -148,6 +148,18 @@
             <param name="record">The record to be updated.</param>
             <returns></returns>
         </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.Export(Radzen.Blazor.RadzenSplitButtonItem)">
+            <summary>
+            Exports the current data grid using the specified format and query parameters.
+            </summary>
+            <param name="item">The split button item containing the export format value.</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListTableBase`1.ExportReport(Radzen.Blazor.RadzenSplitButtonItem)">
+            <summary>
+            Exports a report for the current data grid using the specified format.
+            </summary>
+            <param name="item">The split button item containing the export format value.</param>
+        </member>
         <member name="P:Hrm.Client.Web.Components.ListViewBase`1.Grid">
             <summary>
             Reference to the Radzen RadzenDataGrid component instance.
@@ -205,6 +217,27 @@
             Note: This method will cause LoadData to be called by the RadzenDataGrid component.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListViewBase`1.Export``1(Radzen.Blazor.RadzenSplitButtonItem)">
+            <summary>
+            Exports the current data grid for the specified table type in the selected format.
+            </summary>
+            <typeparam name="TItem">The type of the table to export, must inherit from <see cref="T:Hrm.Shared.App.Tables.BaseTable"/>.</typeparam>
+            <param name="item">The split button item containing the export format value.</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListViewBase`1.ExportView``1(Radzen.Blazor.RadzenSplitButtonItem)">
+            <summary>
+            Exports the current view of the data grid for the specified table type in the selected format.
+            </summary>
+            <typeparam name="TItem">The type of the table to export, must inherit from <see cref="T:Hrm.Shared.App.Tables.BaseTable"/>.</typeparam>
+            <param name="item">The split button item containing the export format value.</param>
+        </member>
+        <member name="M:Hrm.Client.Web.Components.ListViewBase`1.ExportReport``1(Radzen.Blazor.RadzenSplitButtonItem)">
+            <summary>
+            Exports a report for the specified table type in the selected format.
+            </summary>
+            <typeparam name="TItem">The type of the table to export, must inherit from <see cref="T:Hrm.Shared.App.Tables.BaseTable"/>.</typeparam>
+            <param name="item">The split button item containing the export format value.</param>
         </member>
         <member name="T:Hrm.Client.Web.Interop.TeamsSDK.TeamsContext">
             <summary>
@@ -480,6 +513,12 @@
             </summary>
             <param name="query"></param>
         </member>
+        <member name="M:Hrm.Client.Web.Pages.App.MicrosoftEntra.MicrosoftEntraEntityDialog.ValidateUpnPrefixFormat(System.String)">
+            <summary>
+            Validates the UPN prefix format for Microsoft Entra integration.
+            Ensures at least one valid placeholder is present, no unknown placeholders, and only valid UPN characters outside placeholders.
+            </summary>
+        </member>
         <member name="M:Hrm.Client.Web.Pages.Organization.BaseData.IdentificationTypes.IdentificationTypeFormBase.IdNumberLengthRegex">
             <remarks>
             Pattern:<br/>
@@ -507,6 +546,12 @@
             We need to read the Name from the Parent object, so call expand on the FixedCompensationAction query and return the Parent.
             </summary>
             <param name="query"></param>
+        </member>
+        <member name="M:Hrm.Client.Web.Pages.Organization.PositionHierarchyTree.PositionHierarchyView.ExportReport(Radzen.Blazor.RadzenSplitButtonItem)">
+            <summary>
+            Exports a report for the current data grid using the specified format.
+            </summary>
+            <param name="item">The split button item containing the export format value.</param>
         </member>
         <member name="M:Hrm.Client.Web.Pages.Organization.Positions.PositionFormBase.PostSubmitAsync(Hrm.Shared.Organization.Tables.Position)">
             <summary>

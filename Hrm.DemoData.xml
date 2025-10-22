@@ -75,6 +75,11 @@
               Looks up a localized resource of type System.Byte[].
             </summary>
         </member>
+        <member name="P:Hrm.DemoData.Packages._11_Workforce">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
         <member name="P:Hrm.DemoData.Packages.Translations_Dashboards_de">
             <summary>
               Looks up a localized resource of type System.Byte[].
