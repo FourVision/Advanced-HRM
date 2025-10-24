@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [master, Preview, Test, Int] # Add more branches here if needed
+        branch: [master, Preview]
       max-parallel: 1  
 
     steps:
