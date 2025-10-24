@@ -1,0 +1,31 @@
+name: Mirror Azure DevOps Repo
+
+on:
+  schedule:
+    - cron: '0 */5 * * *' # Every 5 hours
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for mirroring
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add Azure DevOps remote
+        run: |
+          git remote add azure https://dev.azure.com/FourVision/WebApps/_git/Hrm
+          git fetch azure master
+      - name: Mirror from Azure DevOps
+        run: |
+          # Reset current branch to match Azure master
+          git checkout -B $(git rev-parse --abbrev-ref HEAD)
+          git reset --hard azure/master
+          git push origin HEAD --force
