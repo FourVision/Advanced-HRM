@@ -3,7 +3,10 @@ name: Mirror FourVision Advanced HRM
 on:
   schedule:
     - cron: '0 */5 * * *' # Every 5 hours
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write # Required for pushing changes
 
 jobs:
   mirror:
@@ -25,13 +28,14 @@ jobs:
       - name: Add Azure DevOps remote
         run: |
           git remote add azure https://dev.azure.com/FourVision/WebApps/_git/Hrm
-          git fetch azure ${{ github.ref_name }} || echo "Branch not found in Azure, defaulting to master"
-          if ! git show-ref --verify --quiet refs/remotes/azure/${{ github.ref_name }}; then
-            git fetch azure master
-            echo "AZURE_BRANCH=master" >> $GITHUB_ENV
-          else
+          if git ls-remote --heads azure ${{ github.ref_name }} | grep -q ${{ github.ref_name }}; then
+            echo "Branch ${{ github.ref_name }} exists in Azure."
             echo "AZURE_BRANCH=${{ github.ref_name }}" >> $GITHUB_ENV
+          else
+            echo "ERROR: Branch '${{ github.ref_name }}' does not exist in Azure DevOps repository."
+            exit 1
           fi
+          git fetch azure ${{ github.ref_name }}
 
       - name: Mirror from Azure DevOps
         run: |
