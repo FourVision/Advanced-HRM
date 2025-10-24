@@ -7,14 +7,15 @@ on:
 
 jobs:
   mirror:
+    if: github.ref_name != 'main' # Skip main branch
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Full history
-          ref: ${{ github.ref_name }} # Ensure we are on the triggered branch
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
 
       - name: Set up Git
         run: |
@@ -25,10 +26,8 @@ jobs:
         run: |
           git remote add azure https://dev.azure.com/FourVision/WebApps/_git/Hrm
           git fetch azure ${{ github.ref_name }} || echo "Branch not found in Azure, defaulting to master"
-          # If branch doesn't exist in Azure, fallback to master
           if ! git show-ref --verify --quiet refs/remotes/azure/${{ github.ref_name }}; then
             git fetch azure master
-            echo "Using Azure master branch"
             echo "AZURE_BRANCH=master" >> $GITHUB_ENV
           else
             echo "AZURE_BRANCH=${{ github.ref_name }}" >> $GITHUB_ENV
