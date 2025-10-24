@@ -46,10 +46,11 @@ jobs:
           fi
           git fetch azure ${{ matrix.branch }}
 
-      - name: Mirror from Azure DevOps
+      - name: Mirror from Azure DevOps and push to GitHub
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
           git checkout -B ${{ matrix.branch }}
           git reset --hard azure/${{ matrix.branch }}
+          git pull --no-edit origin ${{ matrix.branch }} || echo "No changes to merge"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/FourVision/Advanced-HRM.git ${{ matrix.branch }}
