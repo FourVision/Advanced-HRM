@@ -1,4 +1,4 @@
-name: Mirror Azure DevOps Repo
+name: Mirror FourVision Advanced HRM
 
 on:
   schedule:
@@ -8,11 +8,13 @@ on:
 jobs:
   mirror:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout current repo
+      - name: Checkout current branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Full history for mirroring
+          fetch-depth: 0 # Full history
+          ref: ${{ github.ref_name }} # Ensure we are on the triggered branch
 
       - name: Set up Git
         run: |
@@ -22,10 +24,18 @@ jobs:
       - name: Add Azure DevOps remote
         run: |
           git remote add azure https://dev.azure.com/FourVision/WebApps/_git/Hrm
-          git fetch azure master
+          git fetch azure ${{ github.ref_name }} || echo "Branch not found in Azure, defaulting to master"
+          # If branch doesn't exist in Azure, fallback to master
+          if ! git show-ref --verify --quiet refs/remotes/azure/${{ github.ref_name }}; then
+            git fetch azure master
+            echo "Using Azure master branch"
+            echo "AZURE_BRANCH=master" >> $GITHUB_ENV
+          else
+            echo "AZURE_BRANCH=${{ github.ref_name }}" >> $GITHUB_ENV
+          fi
+
       - name: Mirror from Azure DevOps
         run: |
-          # Reset current branch to match Azure master
-          git checkout -B $(git rev-parse --abbrev-ref HEAD)
-          git reset --hard azure/master
-          git push origin HEAD --force
+          git checkout -B ${{ github.ref_name }}
+          git reset --hard azure/$AZURE_BRANCH
+          git push origin ${{ github.ref_name }} --force
