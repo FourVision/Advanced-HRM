@@ -14,6 +14,7 @@ jobs:
     strategy:
       matrix:
         branch: [master, Preview, Test, Int] # Add more branches here if needed
+      max-parallel: 1  
 
     steps:
       - name: Checkout ${{ matrix.branch }}
