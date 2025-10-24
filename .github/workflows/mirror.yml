@@ -28,6 +28,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Set up SSH for deploy key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
       - name: Add Azure DevOps remote
         run: |
           git remote add azure https://dev.azure.com/FourVision/WebApps/_git/Hrm
@@ -43,4 +50,4 @@ jobs:
         run: |
           git checkout -B ${{ matrix.branch }}
           git reset --hard azure/${{ matrix.branch }}
-          git push origin ${{ matrix.branch }} --force
+          git push git@github.com:FourVision/Advanced-HRM.git ${{ matrix.branch }} --force
