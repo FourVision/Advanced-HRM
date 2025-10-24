@@ -10,15 +10,17 @@ permissions:
 
 jobs:
   mirror:
-    if: github.ref_name != 'main' # Skip main branch
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch: [master, Preview, Test, Int] # Add more branches here if needed
 
     steps:
-      - name: Checkout current branch
+      - name: Checkout ${{ matrix.branch }}
         uses: actions/checkout@v4
         with:
+          ref: ${{ matrix.branch }}
           fetch-depth: 0
-          ref: ${{ github.ref_name }}
 
       - name: Set up Git
         run: |
@@ -28,17 +30,16 @@ jobs:
       - name: Add Azure DevOps remote
         run: |
           git remote add azure https://dev.azure.com/FourVision/WebApps/_git/Hrm
-          if git ls-remote --heads azure ${{ github.ref_name }} | grep -q ${{ github.ref_name }}; then
-            echo "Branch ${{ github.ref_name }} exists in Azure."
-            echo "AZURE_BRANCH=${{ github.ref_name }}" >> $GITHUB_ENV
+          if git ls-remote --heads azure ${{ matrix.branch }} | grep -q ${{ matrix.branch }}; then
+            echo "Branch ${{ matrix.branch }} exists in Azure."
           else
-            echo "ERROR: Branch '${{ github.ref_name }}' does not exist in Azure DevOps repository."
+            echo "::error::Branch '${{ matrix.branch }}' does not exist in Azure DevOps repository."
             exit 1
           fi
-          git fetch azure ${{ github.ref_name }}
+          git fetch azure ${{ matrix.branch }}
 
       - name: Mirror from Azure DevOps
         run: |
-          git checkout -B ${{ github.ref_name }}
-          git reset --hard azure/$AZURE_BRANCH
-          git push origin ${{ github.ref_name }} --force
+          git checkout -B ${{ matrix.branch }}
+          git reset --hard azure/${{ matrix.branch }}
+          git push origin ${{ matrix.branch }} --force
