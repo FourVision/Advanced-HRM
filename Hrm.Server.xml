@@ -933,6 +933,19 @@
             <param name="type">The type to check.</param>
             <returns><c>true</c> if the type is a simple type; otherwise, <c>false</c>.</returns>
         </member>
+        <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Types.SetJsonColumnValue(System.Object,System.String,System.Object,System.Type)">
+            <summary>
+            Sets the value of a property within a nested JSON column object, creating intermediate objects as needed.
+            </summary>
+            <param name="root">The root object of the JSON column. If null, a new instance of <paramref name="rootType"/> is created.</param>
+            <param name="columnName">The column name, using underscores to indicate the property path (e.g., "Address_Street_Name").</param>
+            <param name="value">The value to set on the final property in the path.</param>
+            <param name="rootType">The type of the root object.</param>
+            <returns>
+            The root object with the specified property set to <paramref name="value"/>.
+            Intermediate objects are created if they do not exist along the property path.
+            </returns>
+        </member>
         <member name="M:Hrm.Server.Services.App.ImportExport.ImportExportUtils.Converting.DateTimeOffsetFromString(System.String,System.Boolean,System.String)">
             <summary>
             Converts a string to a nullable <see cref="T:System.DateTimeOffset"/> value.
