@@ -274,6 +274,13 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
+        <member name="M:Hrm.Server.Controllers.Organization.PositionWorkerAssignmentsController.PrePost(Hrm.Shared.Organization.Tables.PositionWorkerAssignment)">
+            <summary>
+            Create new record and expires the existing records matching with PositionId
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
         <member name="M:Hrm.Server.Controllers.Organization.WorkerSummariesController.PrePost(Hrm.Shared.Organization.Tables.WorkerSummary)">
             <summary>
             Create new record and expires the existing records matching with worker id
