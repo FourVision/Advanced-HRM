@@ -225,6 +225,33 @@ a {
     color: var(--rz-text-color)
 }
 
+.loader-bottom-right {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    /* Adjust size and z-index as needed */
+    z-index: 10;
+}
+
+.loader-spin {
+    animation: spin 1s linear infinite;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Hide fallback text if font fails to load */
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .loader-dots {
     margin-bottom: 3px
 }

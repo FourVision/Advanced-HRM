@@ -1907,14 +1907,6 @@
             <param name="user"></param>
             <returns></returns>
         </member>
-        <member name="M:Hrm.Server.Services.App.UserServices.GetUserImageAsync(System.String,System.Boolean)">
-            <summary>
-            Retrieves the user image asynchronously.
-            </summary>
-            <param name="oId">The object ID of the user.</param>
-            <param name="waitForResult">Flag indicating whether to wait for the result.</param>
-            <returns>A task representing the asynchronous operation. The task result contains the user image as a Base64 encoded string.</returns>
-        </member>
         <member name="M:Hrm.Server.Services.App.UserServices.GetUserWorkerIdAsync(System.String)">
             <summary>
             Retrieves the worker ID associated with a given object ID asynchronously.
