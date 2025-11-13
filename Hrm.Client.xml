@@ -38,9 +38,9 @@
                         ○ Match a character in the set [A-Z].<br/>
                 ○ Match a sequence of expressions.<br/>
                     ○ Zero-width positive lookbehind.<br/>
-                        ○ Match a character in the set [A-Za-z] right-to-left.<br/>
+                        ○ Match an ASCII letter right-to-left.<br/>
                     ○ Zero-width positive lookahead.<br/>
-                        ○ Match a character in the set [^A-Za-z].<br/>
+                        ○ Match any character other than an ASCII letter.<br/>
             </code>
             </remarks>
         </member>
