@@ -95,7 +95,7 @@
             <code>[^a-zA-Z0-9]</code><br/>
             Explanation:<br/>
             <code>
-            ○ Match a character in the set [^0-9A-Za-z].<br/>
+            ○ Match any character other than an ASCII letter or digit.<br/>
             </code>
             </remarks>
         </member>
@@ -502,11 +502,11 @@
             Explanation:<br/>
             <code>
             ○ "r" capture group.<br/>
-                ○ Match a character in the set [0-9A-Fa-f] exactly 2 times.<br/>
+                ○ Match a hexadecimal digit exactly 2 times.<br/>
             ○ "g" capture group.<br/>
-                ○ Match a character in the set [0-9A-Fa-f] exactly 2 times.<br/>
+                ○ Match a hexadecimal digit exactly 2 times.<br/>
             ○ "b" capture group.<br/>
-                ○ Match a character in the set [0-9A-Fa-f] exactly 2 times.<br/>
+                ○ Match a hexadecimal digit exactly 2 times.<br/>
             </code>
             </remarks>
         </member>

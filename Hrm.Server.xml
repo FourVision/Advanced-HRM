@@ -337,7 +337,7 @@
                 ○ 2nd capture group.<br/>
                     ○ Match the string "xn--".<br/>
             ○ Match a character in the set [0-9a-z].<br/>
-            ○ Match a character in the set [-0-9_a-z] greedily at most 61 times.<br/>
+            ○ Match a character in the set [\-0-9_a-z] greedily at most 61 times.<br/>
             ○ Match a character in the set [0-9a-z] atomically, optionally.<br/>
             ○ Match '.'.<br/>
             ○ Optional (greedy).<br/>
@@ -345,9 +345,9 @@
                     ○ Match the string "xn--".<br/>
             ○ 4th capture group.<br/>
                 ○ Match with 2 alternative expressions.<br/>
-                    ○ Match a character in the set [-0-9a-z] atomically at least 1 and at most 61 times.<br/>
+                    ○ Match a character in the set [\-0-9a-z] atomically at least 1 and at most 61 times.<br/>
                     ○ Match a sequence of expressions.<br/>
-                        ○ Match a character in the set [-0-9a-z] atomically at least 1 and at most 30 times.<br/>
+                        ○ Match a character in the set [\-0-9a-z] atomically at least 1 and at most 30 times.<br/>
                         ○ Match '.'.<br/>
                         ○ Match a character in the set [a-z] atomically at least 2 and at most 16 times.<br/>
             ○ Match if at the end of the string or if before an ending newline.<br/>
@@ -2125,10 +2125,10 @@
             ○ Match a character in the set [Ee].<br/>
             ○ Match '('.<br/>
             ○ 1st capture group.<br/>
-                ○ Match a character in the set [+-] atomically any number of times.<br/>
+                ○ Match a character in the set [+\-] atomically any number of times.<br/>
                 ○ Match a Unicode digit greedily at least once.<br/>
             ○ 2nd capture group.<br/>
-                ○ Match a character in the set [+-] atomically any number of times.<br/>
+                ○ Match a character in the set [+\-] atomically any number of times.<br/>
                 ○ Match a Unicode digit atomically any number of times.<br/>
             ○ Match the string ")/".<br/>
             ○ Match if at the end of the string or if before an ending newline.<br/>
