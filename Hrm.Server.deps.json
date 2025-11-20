@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "Hrm.Server/4.6.416": {
+      "Hrm.Server/4.6.419": {
         "dependencies": {
           "Azure.AI.OpenAI": "2.1.0",
           "Azure.AI.Translation.Text": "1.0.0",
@@ -16,8 +16,8 @@
           "Azure.ResourceManager.Authorization": "1.1.6",
           "Azure.Storage.Blobs": "12.26.0",
           "DocumentFormat.OpenXml": "3.3.0",
-          "Hrm.Client.Web": "4.6.416",
-          "Hrm.DemoData": "4.6.416",
+          "Hrm.Client.Web": "4.6.419",
+          "Hrm.DemoData": "4.6.419",
           "Microsoft.ApplicationInsights.AspNetCore": "2.23.0",
           "Microsoft.AspNetCore.Components.WebAssembly.Server": "10.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "9.0.9",
@@ -1212,22 +1212,22 @@
           }
         }
       },
-      "Hrm.Client/4.6.416": {
+      "Hrm.Client/4.6.419": {
         "dependencies": {
-          "Hrm.Shared": "4.6.416",
+          "Hrm.Shared": "4.6.419",
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.9",
           "Radzen.Blazor": "8.0.4"
         },
         "runtime": {
           "Hrm.Client.dll": {
-            "assemblyVersion": "4.6.416.0",
-            "fileVersion": "4.6.416.0"
+            "assemblyVersion": "4.6.419.0",
+            "fileVersion": "4.6.419.0"
           }
         }
       },
-      "Hrm.Client.Web/4.6.416": {
+      "Hrm.Client.Web/4.6.419": {
         "dependencies": {
-          "Hrm.Client": "4.6.416",
+          "Hrm.Client": "4.6.419",
           "Markdig": "0.43.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "10.0.0",
           "Microsoft.AspNetCore.SignalR.Client": "10.0.0",
@@ -1237,34 +1237,34 @@
         },
         "runtime": {
           "Hrm.Client.Web.dll": {
-            "assemblyVersion": "4.6.416.0",
-            "fileVersion": "4.6.416.0"
+            "assemblyVersion": "4.6.419.0",
+            "fileVersion": "4.6.419.0"
           }
         }
       },
-      "Hrm.DemoData/4.6.416": {
+      "Hrm.DemoData/4.6.419": {
         "runtime": {
           "Hrm.DemoData.dll": {
-            "assemblyVersion": "4.6.416.0",
-            "fileVersion": "4.6.416.0"
+            "assemblyVersion": "4.6.419.0",
+            "fileVersion": "4.6.419.0"
           }
         }
       },
-      "Hrm.Shared/4.6.416": {
+      "Hrm.Shared/4.6.419": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.9"
         },
         "runtime": {
           "Hrm.Shared.dll": {
-            "assemblyVersion": "4.6.416.0",
-            "fileVersion": "4.6.416.0"
+            "assemblyVersion": "4.6.419.0",
+            "fileVersion": "4.6.419.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "Hrm.Server/4.6.416": {
+    "Hrm.Server/4.6.419": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1962,22 +1962,22 @@
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
-    "Hrm.Client/4.6.416": {
+    "Hrm.Client/4.6.419": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Hrm.Client.Web/4.6.416": {
+    "Hrm.Client.Web/4.6.419": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Hrm.DemoData/4.6.416": {
+    "Hrm.DemoData/4.6.419": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Hrm.Shared/4.6.416": {
+    "Hrm.Shared/4.6.419": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
