@@ -801,6 +801,12 @@
             <param name="baseUrl">Server url to connect</param>
             <returns>Running task</returns>
         </member>
+        <member name="T:Hrm.Client.Web.Services.SignalRConnectionMonitorService">
+            <summary>
+            Periodically checks the SignalR connection and ensures it is alive.
+            If disconnected, attempts to reconnect. If connected, sends a keep-alive ping and ships the last notification ID.
+            </summary>
+        </member>
         <member name="P:Hrm.Client.Web.Shared.Components.SaveEditButton`1.BtnShow">
             <summary>
             [Add, AddAndContinue, Save, SaveAndClose, Edit, Cancel]
