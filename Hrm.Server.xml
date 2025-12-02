@@ -34,19 +34,46 @@
             <summary>
             API controller for handling Wiki-related operations such as retrieving pages, searching, and downloading attachments.
             </summary>
+            <remarks>
+            This controller provides secure API endpoints for:
+            <list type="bullet">
+            <item><description>Retrieving the root Wiki page</description></item>
+            <item><description>Searching Wiki pages by text</description></item>
+            <item><description>Retrieving Wiki page content or downloading attachments by path</description></item>
+            </list>
+            All endpoints require appropriate privileges and user context.
+            </remarks>
+            <param name="fourVisionServices">Service for Wiki business logic and data access.</param>
+            <param name="userServices">Service for user and privilege management.</param>
         </member>
         <member name="M:Hrm.Server.Controllers.App.WikiController.#ctor(Hrm.Server.Services.App.FourVisionServices,Hrm.Server.Services.App.UserServices)">
             <summary>
             API controller for handling Wiki-related operations such as retrieving pages, searching, and downloading attachments.
             </summary>
+            <remarks>
+            This controller provides secure API endpoints for:
+            <list type="bullet">
+            <item><description>Retrieving the root Wiki page</description></item>
+            <item><description>Searching Wiki pages by text</description></item>
+            <item><description>Retrieving Wiki page content or downloading attachments by path</description></item>
+            </list>
+            All endpoints require appropriate privileges and user context.
+            </remarks>
+            <param name="fourVisionServices">Service for Wiki business logic and data access.</param>
+            <param name="userServices">Service for user and privilege management.</param>
         </member>
         <member name="M:Hrm.Server.Controllers.App.WikiController.GetAsync">
             <summary>
             Retrieves the root Wiki page if the user has access.
             </summary>
             <returns>
-            The root <see cref="T:Hrm.Shared.App.Models.WikiPage"/> if authorized; otherwise, an Unauthorized result.
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The root <see cref="T:Hrm.Shared.App.Models.WikiPage"/> if authorized.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.UnauthorizedResult"/>: The user does not have permission.<br/>
+            </para>
             </returns>
+            <response code="200">Returns the root Wiki page.</response>
+            <response code="401">User is not authorized to access the Wiki.</response>
         </member>
         <member name="M:Hrm.Server.Controllers.App.WikiController.PostSearch(Hrm.Shared.App.Models.WikiSearchRequest)">
             <summary>
@@ -54,8 +81,13 @@
             </summary>
             <param name="searchRequest">The search request containing the search text.</param>
             <returns>
-            An <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with the search response if authorized; otherwise, an Unauthorized result.
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The search response if authorized.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.UnauthorizedResult"/>: The user does not have permission.<br/>
+            </para>
             </returns>
+            <response code="200">Returns the Wiki search response.</response>
+            <response code="401">User is not authorized to search the Wiki.</response>
         </member>
         <member name="M:Hrm.Server.Controllers.App.WikiController.GetAsync(System.String)">
             <summary>
@@ -63,8 +95,16 @@
             </summary>
             <param name="path">The path to the Wiki page or attachment.</param>
             <returns>
-            The Wiki page content, a file download, or a NotFound/Unauthorized result.
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The Wiki page content.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.FileStreamResult"/>: The file download for attachments.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/>: The page or attachment was not found.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.UnauthorizedResult"/>: The user does not have permission.<br/>
+            </para>
             </returns>
+            <response code="200">Returns the Wiki page content or file download.</response>
+            <response code="401">User is not authorized to access the Wiki.</response>
+            <response code="404">The Wiki page or attachment was not found.</response>
         </member>
         <member name="M:Hrm.Server.Controllers.App.WorkflowsController.UpdateSecurityProfilesAsync(Hrm.Shared.App.Tables.Workflow)">
             <summary>
@@ -95,6 +135,151 @@
             This method checks user privileges, validates the input key, and ensures the workflow exists.
             It then serializes step names as metadata and generates the export file.
             </remarks>
+        </member>
+        <member name="T:Hrm.Server.Controllers.Boarding.UserGuideController">
+            <summary>
+            Controller for managing user boarding guides and related activities.
+            </summary>
+            <remarks>
+            Provides secure API endpoints for:
+            <list type="bullet">
+            <item><description>Retrieving a list of guides for the current user</description></item>
+            <item><description>Retrieving a specific guide and updating its status</description></item>
+            <item><description>Completing or toggling activities within a guide</description></item>
+            <item><description>Getting secure URLs for activity/resource attachments</description></item>
+            <item><description>Adding attachments to guide activities</description></item>
+            </list>
+            All endpoints require appropriate privileges and user context.
+            </remarks>
+            <param name="context">The database context for data access.</param>
+            <param name="userServices">Service for user and privilege management.</param>
+            <param name="blobServiceClient">Azure Blob Service client for storage operations.</param>
+            <param name="blobService">Service for blob storage business logic.</param>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Boarding.UserGuideController.#ctor(Hrm.Server.Data.DatabaseContext,Hrm.Server.Services.App.UserServices,Azure.Storage.Blobs.BlobServiceClient,Hrm.Server.Services.App.BlobService)">
+            <summary>
+            Controller for managing user boarding guides and related activities.
+            </summary>
+            <remarks>
+            Provides secure API endpoints for:
+            <list type="bullet">
+            <item><description>Retrieving a list of guides for the current user</description></item>
+            <item><description>Retrieving a specific guide and updating its status</description></item>
+            <item><description>Completing or toggling activities within a guide</description></item>
+            <item><description>Getting secure URLs for activity/resource attachments</description></item>
+            <item><description>Adding attachments to guide activities</description></item>
+            </list>
+            All endpoints require appropriate privileges and user context.
+            </remarks>
+            <param name="context">The database context for data access.</param>
+            <param name="userServices">Service for user and privilege management.</param>
+            <param name="blobServiceClient">Azure Blob Service client for storage operations.</param>
+            <param name="blobService">Service for blob storage business logic.</param>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Boarding.UserGuideController.GetBoardingGuideAsync(System.Guid)">
+            <summary>
+            Retrieves a <see cref="T:Hrm.Shared.Boarding.Tables.BoardingGuide"/> by ID for the current user, ensuring access and status.
+            </summary>
+            <param name="id">The unique identifier of the guide.</param>
+            <returns>The <see cref="T:Hrm.Shared.Boarding.Tables.BoardingGuide"/> if accessible; otherwise, <c>null</c>.</returns>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Boarding.UserGuideController.GetGuides">
+            <summary>
+            Retrieves a list of boarding guides available to the current user.
+            </summary>
+            <returns>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The list of guides.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>: The user does not have permission.<br/>
+            </para>
+            </returns>
+            <response code="200">Returns the list of guides for the current user.</response>
+            <response code="403">User does not have permission.</response>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Boarding.UserGuideController.GetGuideAsync(System.Guid)">
+            <summary>
+            Retrieves a specific boarding guide by ID and updates its status if necessary.
+            </summary>
+            <param name="id">The unique identifier of the guide.</param>
+            <returns>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The guide details.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>: The user does not have permission.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>: The guide is not found or inaccessible.<br/>
+            </para>
+            </returns>
+            <response code="200">Returns the guide details.</response>
+            <response code="400">The guide is not found or inaccessible.</response>
+            <response code="403">User does not have permission.</response>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Boarding.UserGuideController.CompleteActivity(Hrm.Shared.Boarding.Models.BoardingGuideActivityComplete)">
+            <summary>
+            Toggles the completion status of an activity within a guide.
+            </summary>
+            <param name="request">The activity completion request details.</param>
+            <returns>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The updated activity status.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>: The user does not have permission.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>: Invalid request or activity not found.<br/>
+            </para>
+            </returns>
+            <response code="200">Returns the updated activity status.</response>
+            <response code="400">Invalid request or activity not found.</response>
+            <response code="403">User does not have permission.</response>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Boarding.UserGuideController.GetActivityAttachmentUrlAsync(System.Guid,System.Guid,System.String)">
+            <summary>
+            Retrieves a secure URL for downloading an attachment associated with a guide activity.
+            </summary>
+            <param name="id">The guide ID.</param>
+            <param name="activityId">The activity ID.</param>
+            <param name="blobName">The blob file name.</param>
+            <returns>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The secure download URL.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>: The user does not have permission.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>: The guide is not found or inaccessible.<br/>
+            </para>
+            </returns>
+            <response code="200">Returns the secure download URL for the activity attachment.</response>
+            <response code="400">The guide is not found or inaccessible.</response>
+            <response code="403">User does not have permission.</response>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Boarding.UserGuideController.GetResourceAttachmentUrlAsync(System.Guid,System.String)">
+            <summary>
+            Retrieves a secure URL for downloading a resource attachment associated with a guide.
+            </summary>
+            <param name="id">The guide ID.</param>
+            <param name="blobName">The blob file name.</param>
+            <returns>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The secure download URL.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>: The user does not have permission.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>: The guide is not found or inaccessible.<br/>
+            </para>
+            </returns>
+            <response code="200">Returns the secure download URL for the resource attachment.</response>
+            <response code="400">The guide is not found or inaccessible.</response>
+            <response code="403">User does not have permission.</response>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Boarding.UserGuideController.AddActivityAttachmentAsync(System.Guid,System.Guid,Hrm.Shared.Boarding.Tables.BoardingGuideActivityAttachment)">
+            <summary>
+            Adds a new attachment to a specific activity within a guide.
+            </summary>
+            <param name="guideId">The guide ID.</param>
+            <param name="activityId">The activity ID.</param>
+            <param name="newAttachment">The attachment details to add.</param>
+            <returns>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: The added attachment.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>: The user does not have permission.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/>: The guide or activity is not found.<br/>
+            </para>
+            </returns>
+            <response code="200">Returns the added attachment.</response>
+            <response code="404">The guide or activity is not found.</response>
+            <response code="403">User does not have permission.</response>
         </member>
         <member name="M:Hrm.Server.Controllers.OData.ODataController`1.Clone(`0)">
             <summary>
@@ -1404,6 +1589,13 @@
             <param name="version">The version to update to the clients.</param>
             <returns>A task that represents the asynchronous operation.</returns>
         </member>
+        <member name="M:Hrm.Server.Services.App.Notifications.NotificationsServerService.SplashClientsAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            Sends a splash notification to all connected clients.
+            </summary>
+            <param name="title">The title of the splash notification.</param>
+            <param name="message">The message of the splash notification.</param>
+        </member>
         <member name="M:Hrm.Server.Services.App.Notifications.NotificationsServerService.NotifyBackgroundInvocationToClientsAsync(System.Guid,Hrm.Shared.App.Models.SignalRMessage)">
             <summary>
             Updates the notice to all connected clients with the specified key.
@@ -1417,13 +1609,6 @@
             </summary>
             <param name="message">The message to get to the record detail.</param>
             <returns>A task that represents the asynchronous operation.</returns>
-        </member>
-        <member name="M:Hrm.Server.Services.App.Notifications.NotificationsServerService.SplashClientsAsync(System.String,System.String,System.Boolean)">
-            <summary>
-            Sends a splash notification to all connected clients.
-            </summary>
-            <param name="title">The title of the splash notification.</param>
-            <param name="message">The message of the splash notification.</param>
         </member>
         <member name="M:Hrm.Server.Services.App.Notifications.NotificationsServerService.SendAsync(Hrm.Shared.App.Tables.Notification)">
             <summary>
@@ -2210,6 +2395,50 @@
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
             <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
         </member>
     </members>
 </doc>
