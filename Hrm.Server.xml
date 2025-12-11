@@ -281,6 +281,86 @@
             <response code="404">The guide or activity is not found.</response>
             <response code="403">User does not have permission.</response>
         </member>
+        <member name="T:Hrm.Server.Controllers.Document.WorkerDocumentsController">
+            <summary>
+            API controller for managing worker and applicant documents, supporting individual and bulk operations.
+            </summary>
+            <remarks>
+            This controller provides endpoints for:
+            <list type="bullet">
+            <item><description>Uploading, updating, and deleting individual worker and applicant documents (including Base64 and file upload support)</description></item>
+            <item><description>Creating documents from templates or request forms</description></item>
+            <item><description>Bulk uploading worker documents via ZIP files and processing them asynchronously</description></item>
+            <item><description>Downloading a sample bulk upload template (Excel and sample image) as a ZIP file</description></item>
+            <item><description>Updating and rerunning logs for bulk document uploads</description></item>
+            <item><description>Managing document access, retention, and workflow integration</description></item>
+            </list>
+            All endpoints enforce privilege checks and user context for secure document management.
+            </remarks>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Document.WorkerDocumentsController.#ctor(Hrm.Server.Data.DatabaseContext,Hrm.Server.Services.App.UserServices,Hrm.Server.Services.App.ImportExport.ImportExportService,Azure.Storage.Blobs.BlobServiceClient,Hrm.Server.Services.App.BlobService,Hrm.Server.Services.Document.DocumentViewService,Hrm.Server.Services.App.QueueMessageService,Hrm.Server.Services.App.WorkflowTransactionServices)">
+            <summary>
+            API controller for managing worker and applicant documents, supporting individual and bulk operations.
+            </summary>
+            <remarks>
+            This controller provides endpoints for:
+            <list type="bullet">
+            <item><description>Uploading, updating, and deleting individual worker and applicant documents (including Base64 and file upload support)</description></item>
+            <item><description>Creating documents from templates or request forms</description></item>
+            <item><description>Bulk uploading worker documents via ZIP files and processing them asynchronously</description></item>
+            <item><description>Downloading a sample bulk upload template (Excel and sample image) as a ZIP file</description></item>
+            <item><description>Updating and rerunning logs for bulk document uploads</description></item>
+            <item><description>Managing document access, retention, and workflow integration</description></item>
+            </list>
+            All endpoints enforce privilege checks and user context for secure document management.
+            </remarks>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Document.WorkerDocumentsController.AddBase64WorkerDocumentAsync(Hrm.Shared.Document.Models.WorkerDocumentCreationBase64,Hrm.Server.Services.App.Runtime.Errors.BaseTableErrorHelper)">
+            <summary>
+            Uploads a new worker document using a Base64-encoded file.
+            </summary>
+            <remarks>
+            Accepts a Base64-encoded file and document metadata to create a new worker document.
+            Requires the user to have create privileges and access to worker documents.
+            </remarks>
+            <param name="workerDocumentCreation">The worker document creation data, including Base64 file content and metadata.</param>
+            <param name="baseTableErrorHelper">The error helper service for table operations.</param>
+            <returns>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: Document creation was successful or queued for background processing.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>: The user does not have permission.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>: Invalid input or an error occurred.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.UnauthorizedResult"/>: The user does not have access to the selected document category.<br/>
+            </para>
+            </returns>
+            <response code="200">Document creation was successful or queued for background processing.</response>
+            <response code="400">Invalid input or an error occurred.</response>
+            <response code="401">The user does not have access to the selected document category.</response>
+            <response code="403">The user does not have permission.</response>
+        </member>
+        <member name="M:Hrm.Server.Controllers.Document.WorkerDocumentsController.AddBase64ApplicantDocumentAsync(Hrm.Shared.Document.Models.ApplicantDocumentCreationBase64,Hrm.Server.Services.App.Runtime.Errors.BaseTableErrorHelper)">
+            <summary>
+            Uploads a new applicant document using a Base64-encoded file.
+            </summary>
+            <remarks>
+            Accepts a Base64-encoded file and document metadata to create a new applicant document.
+            Requires the user to have create privileges and access to applicant documents.
+            </remarks>
+            <param name="workerDocumentCreation">The applicant document creation data, including Base64 file content and metadata.</param>
+            <param name="baseTableErrorHelper">The error helper service for table operations.</param>
+            <returns>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/>: Document creation was successful or queued for background processing.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.ForbidResult"/>: The user does not have permission.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/>: Invalid input or an error occurred.<br/>
+            <see cref="T:Microsoft.AspNetCore.Mvc.UnauthorizedResult"/>: The user does not have access to the selected document category.<br/>
+            </para>
+            </returns>
+            <response code="200">Document creation was successful or queued for background processing.</response>
+            <response code="400">Invalid input or an error occurred.</response>
+            <response code="401">The user does not have access to the selected document category.</response>
+            <response code="403">The user does not have permission.</response>
+        </member>
         <member name="M:Hrm.Server.Controllers.OData.ODataController`1.Clone(`0)">
             <summary>
             Creates a deep copy of the specified object by serializing and deserializing it.
